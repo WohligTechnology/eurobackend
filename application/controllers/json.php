@@ -1,5 +1,5 @@
 <?php if ( ! defined("BASEPATH")) exit("No direct script access allowed");
-class Json extends CI_Controller 
+class Json extends CI_Controller
 {function getallhomeslider()
 {
 $elements=array();
@@ -524,13 +524,28 @@ $this->load->view("json",$data);
                          echo 'Unable to write the file';
                     }
 }
- 
+
  // API FROM HERE
- 
- 
+
+
  public function getslider()
 {
 $data["message"]=$this->restapi_model->getslider();
 $this->load->view("json",$data);
 }
+
+public function getExclusivePdt()
+{
+  $data["message"]=$this->restapi_model->getExclusivePdt();
+  $this->load->view("json",$data);
+}
+// public function getExclusivePdt()
+// {
+//
+//   //$id=$thid->input->get_post('id');
+//   $data["message"]=$this->restapi_model->getExclusivePdt();
+//   $this->load->view("json",$data);
+// }
+
+
 } ?>
