@@ -524,4 +524,13 @@ $this->load->view("json",$data);
                          echo 'Unable to write the file';
                     }
 }
+ 
+ // API FROM HERE
+ 
+ 
+ public function getslider()
+{
+$data["message"]=$this->restapi_model->getslider();
+$this->load->view("json",$data);
+}
 } ?>
