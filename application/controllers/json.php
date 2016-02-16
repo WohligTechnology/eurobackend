@@ -539,13 +539,25 @@ public function getExclusivePdt()
   $data["message"]=$this->restapi_model->getExclusivePdt();
   $this->load->view("json",$data);
 }
-// public function getExclusivePdt()
-// {
-//
-//   //$id=$thid->input->get_post('id');
-//   $data["message"]=$this->restapi_model->getExclusivePdt();
-//   $this->load->view("json",$data);
-// }
+
+public function getSubscribers()
+{
+  $email=$this->input->get_post("email");
+  $data["message"]=$this->restapi_model->getSubscribers($email);
+  $this->load->view("json",$data);
+}
+
+public function getAllProducts()
+{
+  $data["message"]=$this->restapi_model->getAllProducts();
+  $this->load->view("json",$data);
+}
+public function getHomePageImage()
+{
+  $data["message"]=$this->restapi_model->getHomePageImage();
+  $this->load->view("json",$data);
+}
+
 
 
 } ?>
