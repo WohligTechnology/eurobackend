@@ -543,7 +543,14 @@ public function getExclusivePdt()
 public function getSubscribers()
 {
   $email=$this->input->get_post("email");
-  $data["message"]=$this->restapi_model->getSubscribers($email);
+
+  if(empty($email)){
+      $data["message"]=0;
+  }
+  else{
+    $data["message"]=$this->restapi_model->getSubscribers($email);
+  }
+
   $this->load->view("json",$data);
 }
 
@@ -564,8 +571,13 @@ public function getGalleryImages()
 }
 public function getAllSeries()
 {
+
     $category=$this->input->get_post("category");
-  $data["message"]=$this->restapi_model->getAllSeries($category);
+    if(empty($category)){
+  $data["message"]=0;
+    }
+    else{  $data["message"]=$this->restapi_model->getAllSeries($category);}
+
   $this->load->view("json",$data);
 }
 public function series()
@@ -573,6 +585,50 @@ public function series()
     $id=$this->input->get_post("id");
   $data["message"]=$this->restapi_model->series($id);
   $this->load->view("json",$data);
+}
+
+public function getPopularProduct()
+{
+  $data["message"]=$this->restapi_model->getPopularProduct();
+  $this->load->view("json",$data);
+}
+public function getAllCategories()
+{
+  $data["message"]=$this->restapi_model->getAllCategory();
+  $this->load->view("json",$data);
+}
+
+public function getProductsByCategory() {
+
+    $categoryid = $this->input->get_post('categoryid');
+
+    $subcategories  = $this->input->get_post("subcategories");
+
+    $where = " ";
+    if($subcategories != "")
+    {
+      $where .= " AND `euro_product`.`subcategory` IN ($subcategories) ";
+    }
+
+    $this->chintantable->createelement('`euro_product`.`id`','1','ID', 'id');
+    $this->chintantable->createelement('`euro_product`.`name`','1','name', 'name');
+    $this->chintantable->createelement('`euro_product`.`image`','1','image', 'image');
+    $this->chintantable->createelement('`euro_product`.`size`','1','price', 'price');
+    $search = $this->input->get_post('search');
+    $pageno = $this->input->get_post('pageno');
+    $orderby = "price";
+    if($orderby=="")
+    {
+    $orderby="id";
+    $orderorder="ASC";
+    }
+
+    $maxrow = $this->input->get_post('maxrow');
+     $data3["data"] =  $this->chintantable->query($pageno, $maxrow, $orderby, $orderorder, $search,"", "FROM `euro_product` LEFT OUTER JOIN `euro_category` on `euro_product`.category=`euro_category`.`id`","WHERE `euro_product`.`category` = '$categoryid'", "$where", "GROUP BY `euro_product`.`id`");
+$data3["filter"] = $this->restapi_model->getFiltersLater($data3["data"]->querycomplete);
+
+        $data["message"] = $data3;
+    $this->load->view('json', $data);
 }
 
 public function contactUs()

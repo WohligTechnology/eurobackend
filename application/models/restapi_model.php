@@ -34,9 +34,22 @@ public function getSubscribers($email){
           }
 }
 
+public function getAllCategory()
+{
+$query= $this->db->query("SELECT `id`,`name`,`image` FROM `euro_category` ORDER BY `order`")->result();
+return $query;
+}
+
+public function getFiltersLater ($query) {
+  $query2 = " SELECT `id` FROM ($query) as `tab1` ";
+  $query3['subcategory'] = $this->db->query(" SELECT DISTINCT `euro_subcategory`.`name`,`euro_subcategory`.`id`,`euro_subcategory`.`order` FROM `euro_product` INNER JOIN `euro_subcategory` ON `euro_product`.`subcategory` = `euro_subcategory`.`id` WHERE `euro_product`.`id` IN ($query2) " )->result();
+  return $query3;
+}
+
 public function getAllProducts()
 {
-$query= $this->db->query("SELECT `id`,`name`,`subcategory` AS 'series',`image` FROM `euro_product`")->result();
+$query= $this->db->query("SELECT `euro_category`.`id`,`euro_category`.`name`, `euro_category`.`image` FROM `euro_category` ORDER BY `order`")->result();
+
 return $query;
 }
 public function getHomePageImage()
@@ -53,6 +66,12 @@ return $query;
 public function getAllSeries($category)
 {
 $query= $this->db->query("SELECT `name` FROM `euro_subcategory` WHERE `category`='$category' ORDER BY `order`")->result();
+return $query;
+}
+public function getPopularProduct()
+{
+$query= $this->db->query("SELECT `id`,`order`,`banner` AS 'frontImage', `image` AS 'backImage' FROM `euro_category` ORDER BY `order`")->result();
+
 return $query;
 }
 public function series($id)

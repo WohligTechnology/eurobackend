@@ -3,9 +3,9 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class popularproduct_model extends CI_Model
 {
-public function create($order,$status,$image)
+public function create($order,$status,$product,$image)
 {
-$data=array("order" => $order,"status" => $status,"image" => $image);
+$data=array("order" => $order,"status" => $status,"product" => $product,"image" => $image);
 $query=$this->db->insert( "euro_popularproduct", $data );
 $id=$this->db->insert_id();
 if(!$query)
@@ -48,7 +48,7 @@ return $query;
 }
 public function getdropdown()
 {
-$query=$this->db->query("SELECT * FROM `euro_popularproduct` ORDER BY `id` 
+$query=$this->db->query("SELECT * FROM `euro_popularproduct` ORDER BY `id`
                     ASC")->row();
 $return=array(
 "" => "Select Option"

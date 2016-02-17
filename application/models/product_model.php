@@ -48,7 +48,7 @@ return $query;
 }
 public function getdropdown()
 {
-$query=$this->db->query("SELECT * FROM `euro_product` ORDER BY `id` 
+$query=$this->db->query("SELECT * FROM `euro_product` ORDER BY `id`
                     ASC")->row();
 $return=array(
 "" => "Select Option"
@@ -57,6 +57,22 @@ foreach($query as $row)
 {
 $return[$row->id]=$row->name;
 }
+return $return;
+}
+
+
+
+public function getproductdropdown()
+{
+$query=$this->db->query("SELECT * FROM `euro_product`  ORDER BY `id` ASC")->result();
+$return=array(
+"" => "Choose an option"
+);
+foreach($query as $row)
+{
+$return[$row->id]=$row->name;
+}
+
 return $return;
 }
 }
