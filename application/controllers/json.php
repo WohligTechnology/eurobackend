@@ -518,10 +518,10 @@ $this->load->view("json",$data);
          }
          $content=$content.end($parts);
                     if (write_file('C:/xampp/htdocs/euro/application/controllers/site.php', $content)) {
-                         echo 'File written!';
+                        // echo 'File written!';
                     }
                     else{
-                         echo 'Unable to write the file';
+                        // echo 'Unable to write the file';
                     }
 }
 
@@ -556,6 +556,35 @@ public function getHomePageImage()
 {
   $data["message"]=$this->restapi_model->getHomePageImage();
   $this->load->view("json",$data);
+}
+public function getGalleryImages()
+{
+  $data["message"]=$this->restapi_model->getGalleryImages();
+  $this->load->view("json",$data);
+}
+public function getAllSeries()
+{
+    $category=$this->input->get_post("category");
+  $data["message"]=$this->restapi_model->getAllSeries($category);
+  $this->load->view("json",$data);
+}
+public function series()
+{
+    $id=$this->input->get_post("id");
+  $data["message"]=$this->restapi_model->series($id);
+  $this->load->view("json",$data);
+}
+
+public function contactUs()
+{
+  $data = json_decode(file_get_contents('php://input'), true);
+  $name = $data['name'];
+  $telephone = $data['telephone'];
+  $email = $data['email'];
+  $comment = $data['comment'];
+
+$data['message'] = $this->restapi_model->contactUs($name,$telephone,$email,$comment);
+$this->load->view('json', $data);
 }
 
 
