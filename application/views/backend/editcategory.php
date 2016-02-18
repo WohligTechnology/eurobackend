@@ -34,7 +34,7 @@
 						<?php
 } ?></span>
 				<div class="btn blue darken-4">
-					<span>Banner</span>
+					<span>Banner 1</span>
 					<input name="banner" type="file" multiple>
 				</div>
 				<div class="file-path-wrapper">
@@ -53,7 +53,7 @@
 						<?php
 } ?></span>
 				<div class="btn blue darken-4">
-					<span>Banner</span>
+					<span>Banner 2</span>
 					<input name="banner2" type="file" multiple>
 				</div>
 				<div class="file-path-wrapper">
@@ -77,6 +77,26 @@
 				</div>
 				<div class="file-path-wrapper">
 					<input class="file-path validate image1" type="text" placeholder="Upload one or more files" value="<?php echo set_value('image', $before->image);?>">
+				</div>
+<!--				<div class="md4"><a class="waves-effect waves-light btn red clearimg input-field ">Clear Image</a></div>-->
+			</div>
+
+		</div>
+<div class="row">
+			<div class="file-field input-field col m6 s12">
+				<span class="img-center big image1">
+                   			<?php if ($before->image2 == '') {
+} else {
+    ?><img src="<?php echo base_url('uploads').'/'.$before->image2;
+    ?>">
+						<?php
+} ?></span>
+				<div class="btn blue darken-4">
+					<span>Feature Image</span>
+					<input name="image2" type="file" multiple>
+				</div>
+				<div class="file-path-wrapper">
+					<input class="file-path validate image2" type="text" placeholder="Upload one or more files" value="<?php echo set_value('image2', $before->image2);?>">
 				</div>
 <!--				<div class="md4"><a class="waves-effect waves-light btn red clearimg input-field ">Clear Image</a></div>-->
 			</div>

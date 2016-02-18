@@ -564,9 +564,10 @@ public function getHomePageImage()
   $data["message"]=$this->restapi_model->getHomePageImage();
   $this->load->view("json",$data);
 }
-public function getGalleryImages()
+public function getEachProductGallery()
 {
-  $data["message"]=$this->restapi_model->getGalleryImages();
+  $id=$this->input->get_post("id");
+  $data["message"]=$this->restapi_model->getEachProductGallery($id);
   $this->load->view("json",$data);
 }
 public function getAllSeries()

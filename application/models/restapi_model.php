@@ -62,6 +62,11 @@ public function getGalleryImages()
 $query= $this->db->query("SELECT  `euro_gallery`.`id`,  `euro_category`.`name` AS 'categoryName',`euro_category`.`image` AS 'categoryImg',  `euro_gallery`.`order`,  `euro_gallery`.`status`,  `euro_gallery`.`image`, `euro_gallery`.`pdf` FROM `euro_gallery` INNER JOIN `euro_category` ON `euro_gallery`.`category`=`euro_category`.`id`")->result();
 return $query;
 }
+public function getEachProductGallery($id)
+{
+$query= $this->db->query("SELECT  `id`, `image` FROM `euro_gallery` WHERE `category`='$id' ORDER BY `order`")->result();
+return $query;
+}
 
 public function getAllSeries($category)
 {
@@ -81,7 +86,7 @@ return $query;
 }
 public function getCategoryById($id)
 {
-$query= $this->db->query("SELECT `id`,`name`,`banner` FROM `euro_category` WHERE `id`='$id'")->row();
+$query= $this->db->query("SELECT `id`,`name`,`banner`,`pdfdownload` AS 'pdf' FROM `euro_category` WHERE `id`='$id'")->row();
 return $query;
 }
 

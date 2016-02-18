@@ -25,12 +25,17 @@ $this->db->where("id",$id);
 $query=$this->db->get("euro_category")->row();
 return $query;
 }
-public function edit($id,$order,$status,$name,$banner,$banner2,$image,$pdfdownload)
+public function edit($id,$order,$status,$name,$banner,$banner2,$image,$image2,$pdfdownload)
 {
 if($image=="")
 {
 $image=$this->category_model->getimagebyid($id);
 $image=$image->image;
+}
+if($image2=="")
+{
+$image2=$this->category_model->getimage2byid($id);
+$image2=$image2->image2;
 }
     if($banner=="")
 {
@@ -40,7 +45,7 @@ $banner=$banner->banner;
     if($banner2=="")
 {
 $banner2=$this->category_model->getbanner2byid($id);
-$banner2=$banner->banner2;
+$banner2=$banner2->banner2;
 }
 $data=array("order" => $order,"status" => $status,"name" => $name,"banner" => $banner,"banner2" => $banner2,"image" => $image,"pdfdownload" => $pdfdownload);
 $this->db->where( "id", $id );
@@ -55,6 +60,11 @@ return $query;
 public function getimagebyid($id)
 {
 $query=$this->db->query("SELECT `image` FROM `euro_category` WHERE `id`='$id'")->row();
+return $query;
+}
+public function getimage2byid($id)
+{
+$query=$this->db->query("SELECT `image2` FROM `euro_category` WHERE `id`='$id'")->row();
 return $query;
 }
     public function getbannerbyid($id)

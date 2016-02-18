@@ -73,7 +73,7 @@
 <div class="file-field input-field col s12 m6">
 <div class="btn blue darken-4">
 <span>Pdf download</span>
-<input type="file" name="pdfdownload" multiple>
+<input type="file" name="pdf" multiple>
 </div>
 <div class="file-path-wrapper">
 <input class="file-path validate" type="text" placeholder="Upload one or more files" value='<?php echo set_value('pdfdownload');?>'>

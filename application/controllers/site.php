@@ -1291,7 +1291,7 @@ $banner2=$this->menu_model->createBanner2();
 $config['upload_path'] = './uploads/';
 $config['allowed_types'] = '*';
 $this->load->library('upload', $config);
-$filename="pdfdownload";
+$filename="pdf";
 $pdfdownload="";
 
 if (  $this->upload->do_upload($filename))
@@ -1347,10 +1347,12 @@ $id=$this->input->get_post("id");
 $order=$this->input->get_post("order");
 $status=$this->input->get_post("status");
 $name=$this->input->get_post("name");
-$banner=$this->input->get_post("banner");
 $image=$this->menu_model->createImage();
-$pdfdownload=$this->input->get_post("pdfdownload");
-if($this->category_model->edit($id,$order,$status,$name,$banner,$image,$pdfdownload)==0)
+$image2=$this->menu_model->createImage2();
+$banner=$this->menu_model->createBanner();
+$banner2=$this->menu_model->createBanner2();
+
+if($this->category_model->edit($id,$order,$status,$name,$banner,$banner2,$image,$image2,$pdfdownload)==0)
 $data["alerterror"]="New category could not be Updated.";
 else
 $data["alertsuccess"]="category Updated Successfully.";
