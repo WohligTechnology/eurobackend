@@ -43,6 +43,25 @@
 <!--				<div class="md4"><a class="waves-effect waves-light btn red clearimg input-field ">Clear Image</a></div>-->
 			</div>
 		</div>
+ <div class="row small">
+			<div class="file-field input-field col m6 s12">
+				<span class="img-center big image1">
+                   			<?php if ($before->banner2 == '') {
+} else {
+    ?><img src="<?php echo base_url('uploads').'/'.$before->banner2;
+    ?>">
+						<?php
+} ?></span>
+				<div class="btn blue darken-4">
+					<span>Banner</span>
+					<input name="banner2" type="file" multiple>
+				</div>
+				<div class="file-path-wrapper">
+					<input class="file-path validate banner1" type="text" placeholder="Upload one or more files" value="<?php echo set_value('banner', $before->banner2);?>">
+				</div>
+<!--				<div class="md4"><a class="waves-effect waves-light btn red clearimg input-field ">Clear Image</a></div>-->
+			</div>
+		</div>
 <div class="row">
 			<div class="file-field input-field col m6 s12">
 				<span class="img-center big image1">
@@ -63,11 +82,10 @@
 			</div>
 
 		</div>
-<input type="file" id="normal-field" class="form-control" name="pdfdownload" value='<?php echo set_value('pdfdownload',$before->pdfdownload);?>'>
+
 <div class="row">
 <div class="file-field input-field col s12 m6">
-<span class="img-center big">
-pdfdownload; ?>" ></span>
+
 <div class="btn blue darken-4">
 <span>Pdf download</span>
 <input type="file" name="pdfdownload" multiple>

@@ -24,11 +24,24 @@
 <div class="row big">
 <div class="file-field input-field col s12 m6">
 <div class="btn blue darken-4">
-<span>Banner</span>
+<span>Banner 1</span>
 <input type="file" name="banner" multiple>
 </div>
 <div class="file-path-wrapper">
 <input class="file-path validate" type="text" placeholder="Upload big image" value='<?php echo set_value('banner');?>'>
+</div>
+</div>
+ <span style=" display: block;
+    padding-top: 30px;">1600px X 500px</span>
+</div>
+<div class="row big">
+<div class="file-field input-field col s12 m6">
+<div class="btn blue darken-4">
+<span>Banner 2</span>
+<input type="file" name="banner2" multiple>
+</div>
+<div class="file-path-wrapper">
+<input class="file-path validate" type="text" placeholder="Upload big image" value='<?php echo set_value('banner2');?>'>
 </div>
 </div>
  <span style=" display: block;
@@ -42,6 +55,17 @@
 </div>
 <div class="file-path-wrapper">
 <input class="file-path validate" type="text" placeholder="Upload one or more files" value='<?php echo set_value('image');?>'>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="file-field input-field col s12 m6">
+<div class="btn blue darken-4">
+<span>Feature Image</span>
+<input type="file" name="image2" multiple>
+</div>
+<div class="file-path-wrapper">
+<input class="file-path validate" type="text" placeholder="Upload one or more files" value='<?php echo set_value('image2');?>'>
 </div>
 </div>
 </div>

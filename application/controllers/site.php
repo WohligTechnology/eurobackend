@@ -1283,14 +1283,32 @@ $status=$this->input->get_post("status");
 $name=$this->input->get_post("name");
 //$banner=$this->input->get_post("banner");
 $image=$this->menu_model->createImage();
+$image2=$this->menu_model->createImage2();
 $banner=$this->menu_model->createBanner();
-$pdfdownload=$this->input->get_post("pdfdownload");
-if($this->category_model->create($order,$status,$name,$banner,$image,$pdfdownload)==0)
+$banner2=$this->menu_model->createBanner2();
+//$pdfdownload=$this->menu_model->createPDF();
+// $pdfdownload=$this->input->get_post("pdfdownload");
+$config['upload_path'] = './uploads/';
+$config['allowed_types'] = '*';
+$this->load->library('upload', $config);
+$filename="pdfdownload";
+$pdfdownload="";
+
+if (  $this->upload->do_upload($filename))
+{
+$uploaddata = $this->upload->data();
+$pdfdownload=$uploaddata['file_name'];
+echo "in pdf".$pdfdownload;
+		$config_r['source_pdf']   = './uploads/' . $uploaddata['file_name'];
+
+}
+echo "pdf     ".$pdfdownload;
+if($this->category_model->create($order,$status,$name,$banner,$banner2,$image,$image2,$pdfdownload)==0)
 $data["alerterror"]="New category could not be created.";
 else
 $data["alertsuccess"]="category created Successfully.";
-$data["redirect"]="site/viewcategory";
-$this->load->view("redirect",$data);
+// $data["redirect"]="site/viewcategory";
+// $this->load->view("redirect",$data);
 }
 }
 public function editcategory()

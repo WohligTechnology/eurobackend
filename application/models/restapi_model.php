@@ -36,7 +36,7 @@ public function getSubscribers($email){
 
 public function getAllCategory()
 {
-$query= $this->db->query("SELECT `id`,`name`,`image` FROM `euro_category` ORDER BY `order`")->result();
+$query= $this->db->query("SELECT `id`,`name`,`image`,`banner` FROM `euro_category` WHERE `status`=1 ORDER BY `order`")->result();
 return $query;
 }
 
@@ -77,6 +77,11 @@ return $query;
 public function series($id)
 {
 $query= $this->db->query("SELECT `euro_subcategory`.`name`,`euro_product`.`id` FROM `euro_subcategory` WHERE `category`='$category' ORDER BY `order`")->result();
+return $query;
+}
+public function getCategoryById($id)
+{
+$query= $this->db->query("SELECT `id`,`name`,`banner` FROM `euro_category` WHERE `id`='$id'")->row();
 return $query;
 }
 

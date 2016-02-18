@@ -594,7 +594,14 @@ public function getPopularProduct()
 }
 public function getAllCategories()
 {
-  $data["message"]=$this->restapi_model->getAllCategory();
+    $data["message"]=$this->restapi_model->getAllCategory();
+  $this->load->view("json",$data);
+}
+
+public function getCategoryById()
+{
+    $id=$this->input->get_post("id");
+  $data["message"]=$this->restapi_model->getCategoryById($id);
   $this->load->view("json",$data);
 }
 
@@ -607,13 +614,14 @@ public function getProductsByCategory() {
     $where = " ";
     if($subcategories != "")
     {
-      $where .= " AND `euro_product`.`subcategory` IN ($subcategories) ";
+      $where .= " AND `euro_product`.`subcategory` = $subcategories ";
+      // $where .= " AND `euro_product`.`subcategory` IN ($subcategories) ";
     }
 
     $this->chintantable->createelement('`euro_product`.`id`','1','ID', 'id');
     $this->chintantable->createelement('`euro_product`.`name`','1','name', 'name');
     $this->chintantable->createelement('`euro_product`.`image`','1','image', 'image');
-    $this->chintantable->createelement('`euro_product`.`size`','1','price', 'price');
+    $this->chintantable->createelement('`euro_product`.`size`','1','size', 'size');
     $search = $this->input->get_post('search');
     $pageno = $this->input->get_post('pageno');
     $orderby = "price";

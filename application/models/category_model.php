@@ -3,9 +3,10 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class category_model extends CI_Model
 {
-public function create($order,$status,$name,$banner,$image,$pdfdownload)
+public function create($order,$status,$name,$banner,$banner2,$image,$image2,$pdfdownload)
 {
-$data=array("order" => $order,"status" => $status,"name" => $name,"banner" => $banner,"image" => $image,"pdfdownload" => $pdfdownload);
+$data=array("order" => $order,"status" => $status,"name" => $name,"banner" => $banner,"banner2" => $banner2,"image" => $image,"image2" => $image2,"pdfdownload" => $pdfdownload);
+print_r($data);
 $query=$this->db->insert( "euro_category", $data );
 $id=$this->db->insert_id();
 if(!$query)
@@ -24,7 +25,7 @@ $this->db->where("id",$id);
 $query=$this->db->get("euro_category")->row();
 return $query;
 }
-public function edit($id,$order,$status,$name,$banner,$image,$pdfdownload)
+public function edit($id,$order,$status,$name,$banner,$banner2,$image,$pdfdownload)
 {
 if($image=="")
 {
@@ -36,7 +37,12 @@ $image=$image->image;
 $banner=$this->category_model->getbannerbyid($id);
 $banner=$banner->banner;
 }
-$data=array("order" => $order,"status" => $status,"name" => $name,"banner" => $banner,"image" => $image,"pdfdownload" => $pdfdownload);
+    if($banner2=="")
+{
+$banner2=$this->category_model->getbanner2byid($id);
+$banner2=$banner->banner2;
+}
+$data=array("order" => $order,"status" => $status,"name" => $name,"banner" => $banner,"banner2" => $banner2,"image" => $image,"pdfdownload" => $pdfdownload);
 $this->db->where( "id", $id );
 $query=$this->db->update( "euro_category", $data );
 return 1;
@@ -54,6 +60,11 @@ return $query;
     public function getbannerbyid($id)
 {
 $query=$this->db->query("SELECT `banner` FROM `euro_category` WHERE `id`='$id'")->row();
+return $query;
+}
+    public function getbanner2byid($id)
+{
+$query=$this->db->query("SELECT `banner2` FROM `euro_category` WHERE `id`='$id'")->row();
 return $query;
 }
 public function getdropdown()

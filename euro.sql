@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.3.11
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 11, 2016 at 02:04 PM
--- Server version: 5.6.24
--- PHP Version: 5.5.24
+-- Host: localhost
+-- Generation Time: Feb 18, 2016 at 08:31 AM
+-- Server version: 10.1.9-MariaDB
+-- PHP Version: 7.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `euro`
@@ -26,10 +26,10 @@ SET time_zone = "+00:00";
 -- Table structure for table `accesslevel`
 --
 
-CREATE TABLE IF NOT EXISTS `accesslevel` (
+CREATE TABLE `accesslevel` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accesslevel`
@@ -43,25 +43,54 @@ INSERT INTO `accesslevel` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `telephone` varchar(255) NOT NULL,
+  `comment` varchar(800) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`id`, `name`, `email`, `telephone`, `comment`) VALUES
+(1, '', '', '', ''),
+(2, '', '', '', ''),
+(3, '', '', '', ''),
+(4, '', '', '', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `euro_category`
 --
 
-CREATE TABLE IF NOT EXISTS `euro_category` (
+CREATE TABLE `euro_category` (
   `id` int(11) NOT NULL,
   `order` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `banner` varchar(255) NOT NULL,
+  `banner2` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
-  `pdfdownload` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `pdfdownload` varchar(255) NOT NULL,
+  `image2` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `euro_category`
 --
 
-INSERT INTO `euro_category` (`id`, `order`, `status`, `name`, `banner`, `image`, `pdfdownload`) VALUES
-(1, 1, 1, 'demo', '1d371c0545608418618d48f1d897cb664.jpg', '2e6cdf3e95c62c3d9dd5a21d96a307f31.jpg', '0');
+INSERT INTO `euro_category` (`id`, `order`, `status`, `name`, `banner`, `banner2`, `image`, `pdfdownload`, `image2`) VALUES
+(2, 1, 1, 'Acrylyte', 'acrylytehov1.png', '', 'acrylyte_(2).png', '', ''),
+(3, 2, 1, 'corriano', 'corriano.png', '', 'corriano_(1).png', '0', ''),
+(15, 2, 1, 'asd', '04_Home11.jpg', '05_Home13.jpg', '88012.jpg', '', 'acrylytehov_(1).png'),
+(16, 2, 1, 'asd', '04_Home12.jpg', '05_Home14.jpg', '88013.jpg', '', 'acrylytehov_(1)1.png');
 
 -- --------------------------------------------------------
 
@@ -69,18 +98,17 @@ INSERT INTO `euro_category` (`id`, `order`, `status`, `name`, `banner`, `image`,
 -- Table structure for table `euro_exclusiveproduct`
 --
 
-CREATE TABLE IF NOT EXISTS `euro_exclusiveproduct` (
+CREATE TABLE `euro_exclusiveproduct` (
   `id` int(11) NOT NULL,
   `image1` varchar(255) NOT NULL,
   `image2` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `euro_exclusiveproduct`
 --
 
 INSERT INTO `euro_exclusiveproduct` (`id`, `image1`, `image2`) VALUES
-(1, '', ''),
 (2, 'about_us.jpg', 'plant_page.jpg'),
 (3, 'homepage.jpg', '');
 
@@ -90,20 +118,24 @@ INSERT INTO `euro_exclusiveproduct` (`id`, `image1`, `image2`) VALUES
 -- Table structure for table `euro_gallery`
 --
 
-CREATE TABLE IF NOT EXISTS `euro_gallery` (
+CREATE TABLE `euro_gallery` (
   `id` int(11) NOT NULL,
   `category` int(11) NOT NULL,
   `order` int(11) NOT NULL,
   `status` int(11) NOT NULL,
-  `image` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `image` varchar(255) NOT NULL,
+  `pdf` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `euro_gallery`
 --
 
-INSERT INTO `euro_gallery` (`id`, `category`, `order`, `status`, `image`) VALUES
-(1, 1, 1, 1, '1d371c0545608418618d48f1d897cb665.jpg');
+INSERT INTO `euro_gallery` (`id`, `category`, `order`, `status`, `image`, `pdf`) VALUES
+(2, 2, 1, 1, '1.jpg', ''),
+(3, 2, 1, 1, '2.jpg', ''),
+(4, 2, 3, 1, '3.jpg', ''),
+(5, 2, 4, 1, '4.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -111,19 +143,19 @@ INSERT INTO `euro_gallery` (`id`, `category`, `order`, `status`, `image`) VALUES
 -- Table structure for table `euro_homepageimage`
 --
 
-CREATE TABLE IF NOT EXISTS `euro_homepageimage` (
+CREATE TABLE `euro_homepageimage` (
   `id` int(11) NOT NULL,
   `image1` varchar(255) NOT NULL,
   `image2` varchar(255) NOT NULL,
   `image3` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `euro_homepageimage`
 --
 
 INSERT INTO `euro_homepageimage` (`id`, `image1`, `image2`, `image3`) VALUES
-(1, '93591384d5bc6d2bb264db68e4efc40d.jpg', 'add-item.png', '2ec4813d7890a273c7676a54c9ceaf50.jpg');
+(1, 'Adhesive-banner.jpg', 'Adhesive-banner1.jpg', 'Adhesive-banner2.jpg');
 
 -- --------------------------------------------------------
 
@@ -131,19 +163,22 @@ INSERT INTO `euro_homepageimage` (`id`, `image1`, `image2`, `image3`) VALUES
 -- Table structure for table `euro_homeslider`
 --
 
-CREATE TABLE IF NOT EXISTS `euro_homeslider` (
+CREATE TABLE `euro_homeslider` (
   `id` int(11) NOT NULL,
   `order` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `image` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `euro_homeslider`
 --
 
 INSERT INTO `euro_homeslider` (`id`, `order`, `status`, `image`) VALUES
-(1, 1, 1, '2stscreeshot.png');
+(1, 1, 1, 'slider1.png'),
+(2, 2, 1, 'slider2.jpg'),
+(3, 3, 1, 'slider3.jpg'),
+(4, 4, 1, 'slider4.jpg');
 
 -- --------------------------------------------------------
 
@@ -151,19 +186,22 @@ INSERT INTO `euro_homeslider` (`id`, `order`, `status`, `image`) VALUES
 -- Table structure for table `euro_popularproduct`
 --
 
-CREATE TABLE IF NOT EXISTS `euro_popularproduct` (
+CREATE TABLE `euro_popularproduct` (
   `id` int(11) NOT NULL,
+  `product` int(11) NOT NULL,
   `order` int(11) NOT NULL,
   `status` int(11) NOT NULL,
-  `image` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `image` varchar(255) NOT NULL,
+  `image2` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `euro_popularproduct`
 --
 
-INSERT INTO `euro_popularproduct` (`id`, `order`, `status`, `image`) VALUES
-(1, 1, 1, '1d371c0545608418618d48f1d897cb663.jpg');
+INSERT INTO `euro_popularproduct` (`id`, `product`, `order`, `status`, `image`, `image2`) VALUES
+(2, 3, 1, 1, 'acrylyte.png', 'acrylytehov2.png'),
+(3, 4, 2, 1, '88021.jpg', '');
 
 -- --------------------------------------------------------
 
@@ -171,21 +209,25 @@ INSERT INTO `euro_popularproduct` (`id`, `order`, `status`, `image`) VALUES
 -- Table structure for table `euro_product`
 --
 
-CREATE TABLE IF NOT EXISTS `euro_product` (
+CREATE TABLE `euro_product` (
   `id` int(11) NOT NULL,
   `category` int(11) NOT NULL,
   `subcategory` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `size` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `euro_product`
 --
 
 INSERT INTO `euro_product` (`id`, `category`, `subcategory`, `name`, `image`, `size`) VALUES
-(1, 1, 1, 'demo', '2ec4813d7890a273c7676a54c9ceaf501.jpg', '56');
+(3, 2, 7, '8801', '8801.jpg', '1220 x 2440mm x 3mm'),
+(4, 2, 8, '8802', '8802.jpg', '1220 x 2440mm x 3mm'),
+(5, 2, 7, '8803', '8803.jpg', '1220 x 2440mm x 3mm'),
+(6, 3, 8, '9001', '88031.jpg', '1220 x 2440mm x 3mm'),
+(7, 2, 8, 'test', '41.jpg', '1220 x 1440mm x 13mm');
 
 -- --------------------------------------------------------
 
@@ -193,20 +235,21 @@ INSERT INTO `euro_product` (`id`, `category`, `subcategory`, `name`, `image`, `s
 -- Table structure for table `euro_subcategory`
 --
 
-CREATE TABLE IF NOT EXISTS `euro_subcategory` (
+CREATE TABLE `euro_subcategory` (
   `id` int(11) NOT NULL,
   `order` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `category` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `euro_subcategory`
 --
 
 INSERT INTO `euro_subcategory` (`id`, `order`, `status`, `category`, `name`) VALUES
-(1, 1, 1, 1, 'demo1');
+(7, 1, 1, 2, '8800'),
+(8, 2, 1, 3, '9000');
 
 -- --------------------------------------------------------
 
@@ -214,11 +257,20 @@ INSERT INTO `euro_subcategory` (`id`, `order`, `status`, `category`, `name`) VAL
 -- Table structure for table `euro_subscribe`
 --
 
-CREATE TABLE IF NOT EXISTS `euro_subscribe` (
+CREATE TABLE `euro_subscribe` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `euro_subscribe`
+--
+
+INSERT INTO `euro_subscribe` (`id`, `email`, `timestamp`) VALUES
+(1, 'vinodwohlig@gmail.com', '2016-02-16 10:24:33'),
+(2, 'midhetfatema94@gmail.com', '2016-02-17 07:35:28'),
+(4, 'midhet@gmail.com', '2016-02-17 07:38:00');
 
 -- --------------------------------------------------------
 
@@ -226,10 +278,10 @@ CREATE TABLE IF NOT EXISTS `euro_subscribe` (
 -- Table structure for table `logintype`
 --
 
-CREATE TABLE IF NOT EXISTS `logintype` (
+CREATE TABLE `logintype` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `logintype`
@@ -247,7 +299,7 @@ INSERT INTO `logintype` (`id`, `name`) VALUES
 -- Table structure for table `menu`
 --
 
-CREATE TABLE IF NOT EXISTS `menu` (
+CREATE TABLE `menu` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` text NOT NULL,
@@ -258,7 +310,7 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `isactive` int(11) NOT NULL,
   `order` int(11) NOT NULL,
   `icon` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `menu`
@@ -281,7 +333,7 @@ INSERT INTO `menu` (`id`, `name`, `description`, `keyword`, `url`, `linktype`, `
 -- Table structure for table `menuaccess`
 --
 
-CREATE TABLE IF NOT EXISTS `menuaccess` (
+CREATE TABLE `menuaccess` (
   `menu` int(11) NOT NULL,
   `access` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -311,10 +363,10 @@ INSERT INTO `menuaccess` (`menu`, `access`) VALUES
 -- Table structure for table `statuses`
 --
 
-CREATE TABLE IF NOT EXISTS `statuses` (
+CREATE TABLE `statuses` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `statuses`
@@ -331,11 +383,11 @@ INSERT INTO `statuses` (`id`, `name`) VALUES
 -- Table structure for table `title`
 --
 
-CREATE TABLE IF NOT EXISTS `title` (
+CREATE TABLE `title` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `logo` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `title`
@@ -350,7 +402,7 @@ INSERT INTO `title` (`id`, `name`, `logo`) VALUES
 -- Table structure for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `user` (
+CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `password` varchar(255) NOT NULL,
@@ -396,7 +448,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `city` varchar(255) NOT NULL,
   `state` varchar(255) NOT NULL,
   `pincode` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
@@ -412,13 +464,13 @@ INSERT INTO `user` (`id`, `name`, `password`, `email`, `accesslevel`, `timestamp
 -- Table structure for table `userlog`
 --
 
-CREATE TABLE IF NOT EXISTS `userlog` (
+CREATE TABLE `userlog` (
   `id` int(11) NOT NULL,
   `onuser` int(11) NOT NULL,
   `status` int(11) NOT NULL,
   `description` varchar(255) NOT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `userlog`
@@ -466,7 +518,14 @@ INSERT INTO `userlog` (`id`, `onuser`, `status`, `description`, `timestamp`) VAL
 -- Indexes for table `accesslevel`
 --
 ALTER TABLE `accesslevel`
-  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `name` (`name`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `euro_category`
@@ -566,82 +625,87 @@ ALTER TABLE `userlog`
 -- AUTO_INCREMENT for table `accesslevel`
 --
 ALTER TABLE `accesslevel`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `euro_category`
 --
 ALTER TABLE `euro_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `euro_exclusiveproduct`
 --
 ALTER TABLE `euro_exclusiveproduct`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `euro_gallery`
 --
 ALTER TABLE `euro_gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `euro_homepageimage`
 --
 ALTER TABLE `euro_homepageimage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `euro_homeslider`
 --
 ALTER TABLE `euro_homeslider`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `euro_popularproduct`
 --
 ALTER TABLE `euro_popularproduct`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `euro_product`
 --
 ALTER TABLE `euro_product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `euro_subcategory`
 --
 ALTER TABLE `euro_subcategory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `euro_subscribe`
 --
 ALTER TABLE `euro_subscribe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `logintype`
 --
 ALTER TABLE `logintype`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `statuses`
 --
 ALTER TABLE `statuses`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `title`
 --
 ALTER TABLE `title`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `userlog`
 --
 ALTER TABLE `userlog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
