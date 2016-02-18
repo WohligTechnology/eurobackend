@@ -27,28 +27,19 @@ return $query;
 }
 public function edit($id,$order,$status,$name,$banner,$banner2,$image,$image2,$pdfdownload)
 {
-if($image=="")
-{
-$image=$this->category_model->getimagebyid($id);
-$image=$image->image;
-}
-if($image2=="")
-{
-$image2=$this->category_model->getimage2byid($id);
-$image2=$image2->image2;
-}
-    if($banner=="")
-{
-$banner=$this->category_model->getbannerbyid($id);
-$banner=$banner->banner;
-}
-    if($banner2=="")
-{
-$banner2=$this->category_model->getbanner2byid($id);
-$banner2=$banner2->banner2;
-}
-$data=array("order" => $order,"status" => $status,"name" => $name,"banner" => $banner,"banner2" => $banner2,"image" => $image,"pdfdownload" => $pdfdownload);
+$data=array("order" => $order,"status" => $status,"name" => $name);
+if($image != "")
+  $data['image']=$image;
+if($image2 != "")
+  $data['image2']=$image2;
+if($banner != "")
+  $data['banner']=$banner;
+if($banner2 != "")
+  $data['banner2']=$banner2;
+if($pdfdownload != "")
+  $data['pdfdownload']=$pdfdownload;
 $this->db->where( "id", $id );
+print_r($data);
 $query=$this->db->update( "euro_category", $data );
 return 1;
 }

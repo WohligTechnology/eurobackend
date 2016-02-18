@@ -1347,17 +1347,86 @@ $id=$this->input->get_post("id");
 $order=$this->input->get_post("order");
 $status=$this->input->get_post("status");
 $name=$this->input->get_post("name");
-$image=$this->menu_model->createImage();
-$image2=$this->menu_model->createImage2();
-$banner=$this->menu_model->createBanner();
-$banner2=$this->menu_model->createBanner2();
+// $image=$this->menu_model->createImage();
+// $image2=$this->menu_model->createImage2();
+// $banner=$this->menu_model->createBanner();
+// $banner2=$this->menu_model->createBanner2();
+$config['upload_path'] = './uploads/';
+ $config['allowed_types'] = 'gif|jpg|png';
+ $this->load->library('upload', $config);
+ $filename="image";
+ $image="";
+ if (  $this->upload->do_upload($filename))
+ {
+	 $uploaddata = $this->upload->data();
+	 $image=$uploaddata['file_name'];
+ }
+if($image=="")
+			 {
+			 $image=$this->category_model->getimagebyid($id);
+				$image=$image->image;
+			 }
+ $filename="image2";
+ $image2="";
+ if (  $this->upload->do_upload($filename))
+ {
+	 $uploaddata = $this->upload->data();
+	 $image2=$uploaddata['file_name'];
+ }
+if($image2=="")
+			 {
+			 $image2=$this->category_model->getimage2byid($id);
+					// print_r($image);
+					 $image2=$image2->image2;
+			 }
+
+			 $filename="banner";
+			 $banner="";
+			 if (  $this->upload->do_upload($filename))
+			 {
+				 $uploaddata = $this->upload->data();
+				 $banner=$uploaddata['file_name'];
+			 }
+			if($banner=="")
+						 {
+						 $banner=$this->category_model->getimage2byid($id);
+								// print_r($image);
+								 $banner=$banner->banner;
+						 }
+
+						 $filename="banner2";
+						 $banner2="";
+						 if (  $this->upload->do_upload($filename))
+						 {
+							 $uploaddata = $this->upload->data();
+							 $banner2=$uploaddata['file_name'];
+						 }
+						if($banner2=="")
+									 {
+									 $banner2=$this->category_model->getimage2byid($id);
+											// print_r($image);
+											 $banner2=$banner2->banner2;
+									 }
+									 $filename="pdfdownload";
+									 $pdfdownload="";
+									 if (  $this->upload->do_upload($filename))
+									 {
+										 $uploaddata = $this->upload->data();
+										 $pdfdownload=$uploaddata['file_name'];
+									 }
+									if($pdfdownload=="")
+												 {
+												 $pdfdownload=$this->category_model->getimage2byid($id);
+														// print_r($image);
+														 $pdfdownload=$banner2->banner2;
+												 }
 
 if($this->category_model->edit($id,$order,$status,$name,$banner,$banner2,$image,$image2,$pdfdownload)==0)
 $data["alerterror"]="New category could not be Updated.";
 else
 $data["alertsuccess"]="category Updated Successfully.";
-$data["redirect"]="site/viewcategory";
-$this->load->view("redirect",$data);
+// $data["redirect"]="site/viewcategory";
+// $this->load->view("redirect",$data);
 }
 }
 public function deletecategory()
