@@ -36,7 +36,7 @@ public function getSubscribers($email){
 
 public function getAllCategory()
 {
-$query= $this->db->query("SELECT `id`,`name`,`image`,`banner` FROM `euro_category` WHERE `status`=1 ORDER BY `order`")->result();
+$query= $this->db->query("SELECT `id`,`name`,`image`,`banner`,`pdfdownload` AS 'pdf' FROM `euro_category` WHERE `status`=1 ORDER BY `order`")->result();
 return $query;
 }
 
@@ -94,7 +94,7 @@ public function contactUs($name,$telephone,$email,$comment)
 {
   $this->db->query("INSERT INTO `contact`(`name`,`telephone`,`email`,`comment`) VALUE('$name','$telephone','$email','$comment')");
   $id=$this->db->insert_id();
-  if(!$id)
+  if($id != "")
   {
     $object = new stdClass();
     $object->value = true;
