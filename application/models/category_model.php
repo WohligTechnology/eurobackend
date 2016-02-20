@@ -68,6 +68,11 @@ return $query;
 $query=$this->db->query("SELECT `banner2` FROM `euro_category` WHERE `id`='$id'")->row();
 return $query;
 }
+    public function getpdfbyid($id)
+{
+$query=$this->db->query("SELECT `pdfdownload` FROM `euro_category` WHERE `id`='$id'")->row();
+return $query;
+}
 public function getdropdown()
 {
 $query=$this->db->query("SELECT * FROM `euro_category` ORDER BY `id` ASC")->result();

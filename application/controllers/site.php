@@ -1413,12 +1413,13 @@ if($image2=="")
 									 {
 										 $uploaddata = $this->upload->data();
 										 $pdfdownload=$uploaddata['file_name'];
+										 	print_r($pdfdownload);
 									 }
 									if($pdfdownload=="")
 												 {
-												 $pdfdownload=$this->category_model->getimage2byid($id);
-														// print_r($image);
-														 $pdfdownload=$banner2->banner2;
+												 $pdfdownload=$this->category_model->getpdfbyid($id);
+														print_r($pdfdownload);
+														 $pdfdownload=$pdfdownload->pdfdownload;
 												 }
 
 if($this->category_model->edit($id,$order,$status,$name,$banner,$banner2,$image,$image2,$pdfdownload)==0)
