@@ -574,10 +574,7 @@ public function getAllSeries()
 {
 
     $category=$this->input->get_post("category");
-    if(empty($category)){
-  $data["message"]=0;
-    }
-    else{  $data["message"]=$this->restapi_model->getAllSeries($category);}
+  $data["message"]=$this->restapi_model->getAllSeries($category);
 
   $this->load->view("json",$data);
 }

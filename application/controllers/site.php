@@ -1277,7 +1277,6 @@ $this->form_validation->set_rules("status","Status","trim");
 $this->form_validation->set_rules("name","Name","trim");
 $this->form_validation->set_rules("banner","Banner","trim");
 $this->form_validation->set_rules("image","Image","trim");
-$this->form_validation->set_rules("pdfdownload","Pdf download","trim");
 if($this->form_validation->run()==FALSE)
 {
 $data["alerterror"]=validation_errors();
@@ -1302,18 +1301,18 @@ $banner2=$this->menu_model->createBanner2();
 $config['upload_path'] = './uploads/';
 $config['allowed_types'] = '*';
 $this->load->library('upload', $config);
-$filename="pdf";
+$filename="pdfdownload";
 $pdfdownload="";
 
 if (  $this->upload->do_upload($filename))
 {
 $uploaddata = $this->upload->data();
 $pdfdownload=$uploaddata['file_name'];
-echo "in pdf".$pdfdownload;
+
 		$config_r['source_pdf']   = './uploads/' . $uploaddata['file_name'];
 
 }
-echo "pdf     ".$pdfdownload;
+
 if($this->category_model->create($order,$status,$name,$banner,$banner2,$image,$image2,$pdfdownload)==0)
 $data["alerterror"]="New category could not be created.";
 else

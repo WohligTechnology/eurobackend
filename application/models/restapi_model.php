@@ -70,7 +70,14 @@ return $query;
 
 public function getAllSeries($category)
 {
-$query= $this->db->query("SELECT `name` FROM `euro_subcategory` WHERE `category`='$category' ORDER BY `order`")->result();
+  if($category !="")
+  {
+    $query= $this->db->query("SELECT `id`,`name`,`category` FROM `euro_subcategory` WHERE `category`='$category' AND `status`=1 ORDER BY `order`")->result();
+  }
+  else {
+    $query= $this->db->query("SELECT `id`,`name`,`category` FROM `euro_subcategory` WHERE `status`=1 ORDER BY `order`")->result();
+  }
+
 return $query;
 }
 public function getPopularProduct()

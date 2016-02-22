@@ -6,7 +6,7 @@ class category_model extends CI_Model
 public function create($order,$status,$name,$banner,$banner2,$image,$image2,$pdfdownload)
 {
 $data=array("order" => $order,"status" => $status,"name" => $name,"banner" => $banner,"banner2" => $banner2,"image" => $image,"image2" => $image2,"pdfdownload" => $pdfdownload);
-// print_r($data);
+ print_r($data);
 $query=$this->db->insert( "euro_category", $data );
 $id=$this->db->insert_id();
 if(!$query)
