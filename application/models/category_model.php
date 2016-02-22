@@ -6,7 +6,7 @@ class category_model extends CI_Model
 public function create($order,$status,$name,$banner,$banner2,$image,$image2,$pdfdownload)
 {
 $data=array("order" => $order,"status" => $status,"name" => $name,"banner" => $banner,"banner2" => $banner2,"image" => $image,"image2" => $image2,"pdfdownload" => $pdfdownload);
-print_r($data);
+// print_r($data);
 $query=$this->db->insert( "euro_category", $data );
 $id=$this->db->insert_id();
 if(!$query)
@@ -39,7 +39,7 @@ if($banner2 != "")
 if($pdfdownload != "")
   $data['pdfdownload']=$pdfdownload;
 $this->db->where( "id", $id );
-print_r($data);
+// print_r($data);
 $query=$this->db->update( "euro_category", $data );
 return 1;
 }
@@ -74,6 +74,18 @@ $query=$this->db->query("SELECT `pdfdownload` FROM `euro_category` WHERE `id`='$
 return $query;
 }
 public function getdropdown()
+{
+$query=$this->db->query("SELECT * FROM `euro_category` ORDER BY `id` ASC")->result();
+$return=array(
+"" => "Select Option"
+);
+foreach($query as $row)
+{
+$return[$row->id]=$row->name;
+}
+return $return;
+}
+public function getcategorydropdown()
 {
 $query=$this->db->query("SELECT * FROM `euro_category` ORDER BY `id` ASC")->result();
 $return=array(

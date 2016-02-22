@@ -12,10 +12,18 @@
 
 <div class=" row">
 <div class=" input-field col s6">
-<?php echo form_dropdown("product",$product,set_value('product'));?>
+<?php echo form_dropdown("category",$category,set_value('category'));?>
+<label>Category</label>
+</div>
+</div>
+
+<!-- <div class=" row">
+<div class=" input-field col s6">
+<?php //echo form_dropdown("product",$product,set_value('product'));?>
 <label>Product</label>
 </div>
-</div>
+</div> -->
+
 
 <div class=" row">
 <div class=" input-field col s6">
@@ -23,17 +31,17 @@
 <label>Status</label>
 </div>
 </div>
-<div class="row">
+<!-- <div class="row">
 <div class="file-field input-field col s12 m6">
 <div class="btn blue darken-4">
 <span>Image</span>
 <input type="file" name="image" multiple>
 </div>
 <div class="file-path-wrapper">
-<input class="file-path validate" type="text" placeholder="Upload one or more files" value='<?php echo set_value('image');?>'>
+<input class="file-path validate" type="text" placeholder="Upload one or more files" value='<?php //echo set_value('image');?>'>
 </div>
 </div>
-</div>
+</div> -->
 <!-- <div class="row">
 <div class="file-field input-field col s12 m6">
 <div class="btn blue darken-4">

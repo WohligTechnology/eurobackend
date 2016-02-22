@@ -1074,6 +1074,11 @@ $elements[3]->field="`euro_popularproduct`.`image`";
 $elements[3]->sort="1";
 $elements[3]->header="Image";
 $elements[3]->alias="image";
+$elements[4]=new stdClass();
+$elements[4]->field="`euro_category`.`name`";
+$elements[4]->sort="1";
+$elements[4]->header="category";
+$elements[4]->alias="category";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -1088,7 +1093,7 @@ if($orderby=="")
 $orderby="id";
 $orderorder="ASC";
 }
-$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `euro_popularproduct`");
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `euro_popularproduct` LEFT OUTER JOIN `euro_category` ON `euro_popularproduct`.`category`=`euro_category`.`id`");
 $this->load->view("json",$data);
 }
 
@@ -1099,6 +1104,7 @@ $this->checkaccess($access);
 $data["page"]="createpopularproduct";
 $data['status'] =$this->user_model->getstatusdropdown();
 $data['product'] =$this->product_model->getproductdropdown();
+$data['category'] =$this->category_model->getcategorydropdown();
 $data["title"]="Create popularproduct";
 $this->load->view("template",$data);
 }
@@ -1115,6 +1121,7 @@ $data["alerterror"]=validation_errors();
 $data["page"]="createpopularproduct";
 $data['status'] =$this->user_model->getstatusdropdown();
 $data['product'] =$this->product_model->getproductdropdown();
+$data['category'] =$this->category_model->getcategorydropdown();
 $data["title"]="Create popularproduct";
 $this->load->view("template",$data);
 }
@@ -1123,10 +1130,11 @@ else
 $id=$this->input->get_post("id");
 $order=$this->input->get_post("order");
 $status=$this->input->get_post("status");
+$category=$this->input->get_post("category");
 $product=$this->input->get_post("product");
 $image=$this->menu_model->createImage();
 // $image2=$this->menu_model->createImage2();
-if($this->popularproduct_model->create($order,$status,$product,$image)==0)
+if($this->popularproduct_model->create($order,$status,$category,$product,$image)==0)
 $data["alerterror"]="New popularproduct could not be created.";
 else
 $data["alertsuccess"]="popularproduct created Successfully.";
@@ -1140,6 +1148,7 @@ $access=array("1");
 $this->checkaccess($access);
 $data["page"]="editpopularproduct";
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
+$data['category'] =$this->category_model->getcategorydropdown();
 $data["title"]="Edit popularproduct";
 $data["before"]=$this->popularproduct_model->beforeedit($this->input->get("id"));
 $this->load->view("template",$data);
@@ -1157,6 +1166,7 @@ if($this->form_validation->run()==FALSE)
 $data["alerterror"]=validation_errors();
 $data["page"]="editpopularproduct";
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
+$data['category'] =$this->category_model->getcategorydropdown();
 $data["title"]="Edit popularproduct";
 $data["before"]=$this->popularproduct_model->beforeedit($this->input->get("id"));
 $this->load->view("template",$data);
@@ -1166,8 +1176,9 @@ else
 $id=$this->input->get_post("id");
 $order=$this->input->get_post("order");
 $status=$this->input->get_post("status");
+$category=$this->input->get_post("category");
 $image=$this->menu_model->createImage();
-if($this->popularproduct_model->edit($id,$order,$status,$image)==0)
+if($this->popularproduct_model->edit($id,$order,$category,$status,$image)==0)
 $data["alerterror"]="New popularproduct could not be Updated.";
 else
 $data["alertsuccess"]="popularproduct Updated Successfully.";
@@ -1307,8 +1318,8 @@ if($this->category_model->create($order,$status,$name,$banner,$banner2,$image,$i
 $data["alerterror"]="New category could not be created.";
 else
 $data["alertsuccess"]="category created Successfully.";
-// $data["redirect"]="site/viewcategory";
-// $this->load->view("redirect",$data);
+$data["redirect"]="site/viewcategory";
+$this->load->view("redirect",$data);
 }
 }
 public function editcategory()
@@ -1426,8 +1437,8 @@ if($this->category_model->edit($id,$order,$status,$name,$banner,$banner2,$image,
 $data["alerterror"]="New category could not be Updated.";
 else
 $data["alertsuccess"]="category Updated Successfully.";
-// $data["redirect"]="site/viewcategory";
-// $this->load->view("redirect",$data);
+$data["redirect"]="site/viewcategory";
+$this->load->view("redirect",$data);
 }
 }
 public function deletecategory()

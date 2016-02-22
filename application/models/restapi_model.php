@@ -75,7 +75,7 @@ return $query;
 }
 public function getPopularProduct()
 {
-$query= $this->db->query("SELECT `id`,`order`,`banner` AS 'frontImage', `banner2` AS 'backImage' FROM `euro_category` ORDER BY `order`")->result();
+$query= $this->db->query("SELECT `euro_category`.`id`,`euro_category`.`name`,`euro_category`.`banner` AS 'frontImage', `euro_category`.`banner2` AS 'backImage' FROM `euro_popularproduct` LEFT OUTER JOIN `euro_category` ON `euro_category`.`id`=`euro_popularproduct`.`category`  ORDER BY `euro_category`.`order`")->result();
 
 return $query;
 }
