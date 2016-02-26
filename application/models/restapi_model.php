@@ -11,7 +11,7 @@ public function getslider()
 }
 public function getExclusivePdt()
 {
-  $query=$this->db->query("SELECT `id`, `image1`, `image2` FROM `euro_exclusiveproduct` WHERE 1")->result();
+  $query=$this->db->query("SELECT `id`,`link`, `image1`, `image2` FROM `euro_exclusiveproduct` WHERE 1")->result();
   return $query;
 }
 
@@ -67,6 +67,18 @@ public function getEachProductGallery($id)
 $query= $this->db->query("SELECT  `id`, `image` FROM `euro_gallery` WHERE `category`='$id' ORDER BY `order`")->result();
 return $query;
 }
+public function getDownload($id)
+{
+  if($id != "")
+  {
+    $query= $this->db->query("SELECT  `id`, `image`,`pdf` FROM `download` WHERE `id`='$id' ORDER BY `order`")->row();
+  }
+  else {
+  $query= $this->db->query("SELECT  `id`, `image`,`pdf` FROM `download` ORDER BY `order`")->result();
+  }
+
+return $query;
+}
 
 public function getAllSeries($category)
 {
@@ -82,7 +94,7 @@ return $query;
 }
 public function getPopularProduct()
 {
-$query= $this->db->query("SELECT `euro_category`.`id`,`euro_category`.`name`,`euro_category`.`banner` AS 'frontImage', `euro_category`.`banner2` AS 'backImage' FROM `euro_popularproduct` LEFT OUTER JOIN `euro_category` ON `euro_category`.`id`=`euro_popularproduct`.`category`  ORDER BY `euro_category`.`order`")->result();
+$query= $this->db->query("SELECT `euro_popularproduct`.`id`,`euro_popularproduct`.`link`,`euro_popularproduct`.`image` AS 'frontImage', `euro_popularproduct`.`image2` AS 'backImage' FROM `euro_popularproduct`  ORDER BY `euro_popularproduct`.`order`")->result();
 
 return $query;
 }

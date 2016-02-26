@@ -956,6 +956,11 @@ $elements[2]->field="`euro_exclusiveproduct`.`image2`";
 $elements[2]->sort="1";
 $elements[2]->header="Image2";
 $elements[2]->alias="image2";
+$elements[3]=new stdClass();
+$elements[3]->field="`euro_exclusiveproduct`.`link`";
+$elements[3]->sort="1";
+$elements[3]->header="link";
+$elements[3]->alias="link";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -989,7 +994,8 @@ $this->checkaccess($access);
 $id=$this->input->get_post("id");
 $image1=$this->menu_model->createImage1();
 $image2=$this->menu_model->createImage2();
-if($this->exclusiveproduct_model->create($image1,$image2)==0)
+$link=$this->input->get_post("link");
+if($this->exclusiveproduct_model->create($image1,$image2,$link)==0)
 $data["alerterror"]="New exclusiveproduct could not be created.";
 else
 $data["alertsuccess"]="exclusiveproduct created Successfully.";
@@ -1024,9 +1030,37 @@ $this->load->view("template",$data);
 else
 {
 $id=$this->input->get_post("id");
-$image1=$this->input->get_post("image1");
-$image2=$this->input->get_post("image2");
-if($this->exclusiveproduct_model->edit($id,$image1,$image2)==0)
+$link=$this->input->get_post("link");
+$config['upload_path'] = './uploads/';
+ $config['allowed_types'] = 'gif|jpg|png';
+ $this->load->library('upload', $config);
+ $filename="image1";
+ $image1="";
+ if (  $this->upload->do_upload($filename))
+ {
+	 $uploaddata = $this->upload->data();
+	 $image=$uploaddata['file_name'];
+ }
+if($image1=="")
+			 {
+			 $image1=$this->exclusiveproduct_model->getimagebyid($id);
+				$image1=$image1->image1;
+			 }
+ $filename="image2";
+ $image2="";
+ if (  $this->upload->do_upload($filename))
+ {
+	 $uploaddata = $this->upload->data();
+	 $image2=$uploaddata['file_name'];
+ }
+if($image2=="")
+			 {
+			 $image2=$this->exclusiveproduct_model->getimage2byid($id);
+					// print_r($image);
+					 $image2=$image2->image;
+			 }
+
+if($this->exclusiveproduct_model->edit($id,$image,$image2,$link)==0)
 $data["alerterror"]="New exclusiveproduct could not be Updated.";
 else
 $data["alertsuccess"]="exclusiveproduct Updated Successfully.";
@@ -1079,6 +1113,11 @@ $elements[4]->field="`euro_category`.`name`";
 $elements[4]->sort="1";
 $elements[4]->header="category";
 $elements[4]->alias="category";
+$elements[5]=new stdClass();
+$elements[5]->field="`euro_popularproduct`.`link`";
+$elements[5]->sort="1";
+$elements[5]->header="link";
+$elements[5]->alias="link";
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
 $orderby=$this->input->get_post("orderby");
@@ -1132,9 +1171,10 @@ $order=$this->input->get_post("order");
 $status=$this->input->get_post("status");
 $category=$this->input->get_post("category");
 $product=$this->input->get_post("product");
+$link=$this->input->get_post("link");
 $image=$this->menu_model->createImage();
-// $image2=$this->menu_model->createImage2();
-if($this->popularproduct_model->create($order,$status,$category,$product,$image)==0)
+$image2=$this->menu_model->createImage2();
+if($this->popularproduct_model->create($order,$status,$category,$product,$image,$image2,$link)==0)
 $data["alerterror"]="New popularproduct could not be created.";
 else
 $data["alertsuccess"]="popularproduct created Successfully.";
@@ -1177,8 +1217,36 @@ $id=$this->input->get_post("id");
 $order=$this->input->get_post("order");
 $status=$this->input->get_post("status");
 $category=$this->input->get_post("category");
-$image=$this->menu_model->createImage();
-if($this->popularproduct_model->edit($id,$order,$category,$status,$image)==0)
+$link=$this->input->get_post("link");
+$config['upload_path'] = './uploads/';
+ $config['allowed_types'] = 'gif|jpg|png';
+ $this->load->library('upload', $config);
+ $filename="image";
+ $image="";
+ if (  $this->upload->do_upload($filename))
+ {
+	 $uploaddata = $this->upload->data();
+	 $image=$uploaddata['file_name'];
+ }
+if($image=="")
+			 {
+			 $image=$this->popularproduct_model->getimagebyid($id);
+				$image=$image->image;
+			 }
+ $filename="image2";
+ $image2="";
+ if (  $this->upload->do_upload($filename))
+ {
+	 $uploaddata = $this->upload->data();
+	 $image2=$uploaddata['file_name'];
+ }
+if($image2=="")
+			 {
+			 $image2=$this->popularproduct_model->getimage2byid($id);
+					// print_r($image);
+					 $image2=$image2->image;
+			 }
+if($this->popularproduct_model->edit($id,$order,$category,$status,$image,$image2,$link)==0)
 $data["alerterror"]="New popularproduct could not be Updated.";
 else
 $data["alertsuccess"]="popularproduct Updated Successfully.";
@@ -1907,6 +1975,159 @@ $this->product_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewproduct";
 $this->load->view("redirect",$data);
 }
+public function viewdownload()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data["page"]="viewdownload";
+$data["base_url"]=site_url("site/viewdownloadjson");
+$data["title"]="View Download";
+$this->load->view("template",$data);
+}
+function viewdownloadjson()
+{
+$elements=array();
+$elements[0]=new stdClass();
+$elements[0]->field="`download`.`id`";
+$elements[0]->sort="1";
+$elements[0]->header="ID";
+$elements[0]->alias="id";
+$elements[1]=new stdClass();
+$elements[1]->field="`download`.`image`";
+$elements[1]->sort="1";
+$elements[1]->header="Image";
+$elements[1]->alias="image";
+$elements[2]=new stdClass();
+$elements[2]->field="`download`.`pdf`";
+$elements[2]->sort="1";
+$elements[2]->header="pdf";
+$elements[2]->alias="pdf";
+$elements[3]=new stdClass();
+$elements[3]->field="`download`.`order`";
+$elements[3]->sort="1";
+$elements[3]->header="order";
+$elements[3]->alias="order";
+$search=$this->input->get_post("search");
+$pageno=$this->input->get_post("pageno");
+$orderby=$this->input->get_post("orderby");
+$orderorder=$this->input->get_post("orderorder");
+$maxrow=$this->input->get_post("maxrow");
+if($maxrow=="")
+{
+$maxrow=20;
+}
+if($orderby=="")
+{
+$orderby="id";
+$orderorder="ASC";
+}
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `download`");
+$this->load->view("json",$data);
+}
 
+public function createdownload()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data["page"]="createdownload";
+$data["title"]="Create Download";
+$this->load->view("template",$data);
+}
+public function createdownloadsubmit()
+{
+$access=array("1");
+$this->checkaccess($access);
+$id=$this->input->get_post("id");
+// $image=$this->menu_model->createImage1();
+$order=$this->input->get_post("order");
+
+$config['upload_path'] = './uploads/';
+ $config['allowed_types'] = '*';
+ $this->load->library('upload', $config);
+ $filename="pdf";
+ $pdf="";
+ if (  $this->upload->do_upload($filename))
+ {
+	 $uploaddata = $this->upload->data();
+	 $pdf=$uploaddata['file_name'];
+ }
+
+$image=$this->menu_model->createImage1();
+if($this->download_model->create($image,$pdf,$order)==0)
+$data["alerterror"]="New Download could not be created.";
+else
+$data["alertsuccess"]="Download created Successfully.";
+$data["redirect"]="site/viewdownload";
+$this->load->view("redirect",$data);
+
+}
+public function editdownload()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data["page"]="editdownload";
+$data["title"]="Edit Download";
+$data["before"]=$this->download_model->beforeedit($this->input->get("id"));
+$this->load->view("template",$data);
+}
+public function editdownloadsubmit()
+{
+$access=array("1");
+$this->checkaccess($access);
+$this->form_validation->set_rules("id","ID","trim");
+$this->form_validation->set_rules("image1","Image1","trim");
+$this->form_validation->set_rules("image2","Image2","trim");
+if($this->form_validation->run()==FALSE)
+{
+$data["alerterror"]=validation_errors();
+$data["page"]="editdownload";
+$data["title"]="Edit Download";
+$data["before"]=$this->download_model->beforeedit($this->input->get("id"));
+$this->load->view("template",$data);
+}
+else
+{
+$id=$this->input->get_post("id");
+$order=$this->input->get_post("order");
+$config['upload_path'] = './uploads/';
+ $config['allowed_types'] = '*';
+ $this->load->library('upload', $config);
+ $filename="image";
+ $image="";
+ if (  $this->upload->do_upload($filename))
+ {
+	 $uploaddata = $this->upload->data();
+	 $image=$uploaddata['file_name'];
+ }
+if($image=="")
+			 {
+			 $image=$this->exclusiveproduct_model->getimagebyid($id);
+				$image=$image->image;
+			 }
+ $filename="pdf";
+ $pdf="";
+ if (  $this->upload->do_upload($filename))
+ {
+	 $uploaddata = $this->upload->data();
+	 $pdf=$uploaddata['file_name'];
+ }
+
+
+if($this->download_model->edit($id,$image,$pdf,$order)==0)
+$data["alerterror"]="New Download could not be Updated.";
+else
+$data["alertsuccess"]="Download Updated Successfully.";
+$data["redirect"]="site/viewdownload";
+$this->load->view("redirect",$data);
+}
+}
+public function deletedownload()
+{
+$access=array("1");
+$this->checkaccess($access);
+$this->download_model->delete($this->input->get("id"));
+$data["redirect"]="site/viewdownload";
+$this->load->view("redirect",$data);
+}
 }
 ?>

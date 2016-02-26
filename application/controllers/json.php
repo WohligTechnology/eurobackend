@@ -570,6 +570,12 @@ public function getEachProductGallery()
   $data["message"]=$this->restapi_model->getEachProductGallery($id);
   $this->load->view("json",$data);
 }
+public function getDownload()
+{
+  $id=$this->input->get_post("id");
+  $data["message"]=$this->restapi_model->getDownload($id);
+  $this->load->view("json",$data);
+}
 public function getAllSeries()
 {
 

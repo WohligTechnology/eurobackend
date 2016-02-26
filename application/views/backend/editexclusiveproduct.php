@@ -1,10 +1,17 @@
+<form class='col s12' method='post' action='<?php echo site_url("site/editexclusiveproductsubmit");?>' enctype= 'multipart/form-data'>
 <div class="row">
 <div class="col s12">
 <h4 class="pad-left-15 capitalize">Edit exclusiveproduct</h4>
 </div>
 </div>
 <div class="row">
-<form class='col s12' method='post' action='<?php echo site_url("site/editexclusiveproductsubmit");?>' enctype= 'multipart/form-data'>
+<div class="input-field col s6">
+<label for="Order">Link</label>
+<input type="text" id="link" name="link" value='<?php echo set_value('link',$before->link);?>'>
+</div>
+</div>
+<div class="row">
+
 <input type="hidden" id="normal-field" class="form-control" name="id" value="<?php echo set_value('id',$before->id);?>" style="display:none;">
 <div class="row big">
 			<div class="file-field input-field col m6 s12">

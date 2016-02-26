@@ -1,6 +1,6 @@
 <div class="row">
 <div class="col s12">
-<h4 class="pad-left-15 capitalize">Edit popularproduct</h4>
+<h4 class="pad-left-15 capitalize">Edit Popular Product</h4>
 </div>
 </div>
 <div class="row">
@@ -12,24 +12,64 @@
 <input type="text" id="Order" name="order" value='<?php echo set_value('order',$before->order);?>'>
 </div>
 </div>
-<div class=" row">
+<div class="row">
+<div class="input-field col s6">
+<label for="Order">Link</label>
+<input type="text" id="link" name="link" value='<?php echo set_value('link',$before->link);?>'>
+</div>
+</div>
+<!-- <div class=" row">
 <div class=" input-field col s12 m6">
-<?php echo form_dropdown("category",$category,set_value('category',$before->category));?>
+<?php //echo form_dropdown("category",$category,set_value('category',$before->category));?>
 <label for="Status">Category</label>
 </div>
-</div>
+</div> -->
 <div class=" row">
 <div class=" input-field col s12 m6">
 <?php echo form_dropdown("status",$status,set_value('status',$before->status));?>
 <label for="Status">Status</label>
 </div>
 </div>
-<!-- <div class="row">
-<div class="input-field col s6">
-<label for="Image">Image</label>
-<input type="text" id="Image" name="image" value='<?php echo set_value('image',$before->image);?>'>
-</div>
-</div> -->
+<div class="row">
+			<div class="file-field input-field col m6 s12">
+				<span class="img-center big image1">
+                   			<?php if ($before->image == '') {
+} else {
+    ?><img src="<?php echo base_url('uploads').'/'.$before->image;
+    ?>">
+						<?php
+} ?></span>
+				<div class="btn blue darken-4">
+					<span>Image1</span>
+					<input name="image" type="file" multiple>
+				</div>
+				<div class="file-path-wrapper">
+					<input class="file-path validate image1" type="text" placeholder="Upload one or more files" value="<?php echo set_value('image', $before->image);?>">
+				</div>
+<!--				<div class="md4"><a class="waves-effect waves-light btn red clearimg input-field ">Clear Image</a></div>-->
+			</div>
+
+		</div>
+    <div class="row">
+    			<div class="file-field input-field col m6 s12">
+    				<span class="img-center big image1">
+                       			<?php if ($before->image2 == '') {
+    } else {
+        ?><img src="<?php echo base_url('uploads').'/'.$before->image2;
+        ?>">
+    						<?php
+    } ?></span>
+    				<div class="btn blue darken-4">
+    					<span>Image2</span>
+    					<input name="image2" type="file" multiple>
+    				</div>
+    				<div class="file-path-wrapper">
+    					<input class="file-path validate image1" type="text" placeholder="Upload one or more files" value="<?php echo set_value('image2', $before->image2);?>">
+    				</div>
+    <!--				<div class="md4"><a class="waves-effect waves-light btn red clearimg input-field ">Clear Image</a></div>-->
+    			</div>
+
+    		</div>
 <div class="row">
 <div class="col s6">
 <button type="submit" class="btn btn-primary waves-effect waves-light  blue darken-4">Save</button>
