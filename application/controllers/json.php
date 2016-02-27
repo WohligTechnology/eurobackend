@@ -610,17 +610,39 @@ public function getCategoryById()
 }
 public function SearchByCategory()
 {
-    $name=$this->input->get_post("name");
-  $data["message"]=$this->restapi_model->SearchByCategory($name);
-  $this->load->view("json",$data);
+  $name=$this->input->get_post("name");
+  $where = "WHERE 1";
+$this->chintantable->createelement("`euro_product`.`id`", '1', "ID", "id");
+$this->chintantable->createelement("`euro_product`.`name`", '1', "name", "name");
+$this->chintantable->createelement("`euro_product`.`image`", '0', "image", "image");
+$this->chintantable->createelement("`euro_product`.`size`", '0', "size", "size");
+$search=$this->input->get_post("search");
+$pageno=$this->input->get_post("pageno");
+$orderby=$this->input->get_post("orderby");
+$orderorder=$this->input->get_post("orderorder");
+$maxrow=$this->input->get_post("maxrow");
+if($maxrow=="")
+{
+$maxrow=  20;
+}
+if($orderby=="")
+{
+$orderby="id";
+$orderorder="DESC";
+}
+
+if($name != "")
+{
+  $where= "AND `euro_category`.`name` LIKE '$name%'";
+}
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `euro_product` INNER JOIN `euro_category` ON `euro_product`.`category`=`euro_category`.`id` $where");
+$this->load->view("json",$data);
 }
 
 public function getProductsByCategory() {
 
     $categoryid = $this->input->get_post('categoryid');
-
     $subcategories  = $this->input->get_post("subcategories");
-
     $where = " ";
     if($subcategories != "")
     {

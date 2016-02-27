@@ -100,7 +100,7 @@ return $query;
 }
 public function series($id)
 {
-$query= $this->db->query("SELECT `euro_subcategory`.`name`,`euro_product`.`id` FROM `euro_subcategory` WHERE `category`='$category' ORDER BY `order`")->result();
+$query= $this->db->query("SELECT `euro_subcategory`.`id`,`euro_subcategory`.`name` FROM `euro_subcategory` WHERE `category`='$id' ORDER BY `order`")->result();
 return $query;
 }
 public function getCategoryById($id)
@@ -108,11 +108,11 @@ public function getCategoryById($id)
 $query= $this->db->query("SELECT `id`,`name`,`banner`,`pdfdownload` AS 'pdf' FROM `euro_category` WHERE `id`='$id'")->row();
 return $query;
 }
-public function SearchByCategory($name)
-{
-$query= $this->db->query("SELECT `euro_product`.`id`,`euro_product`.`name`,`euro_product`.`image`,`euro_product`.`size` FROM `euro_product` INNER JOIN `euro_category` ON `euro_product`.`category`=`euro_category`.`id` WHERE `euro_category`.`name` LIKE '$name%'")->result();
-return $query;
-}
+// public function SearchByCategory($name)
+// {
+// $query= $this->db->query("SELECT `euro_product`.`id`,`euro_product`.`name`,`euro_product`.`image`,`euro_product`.`size` FROM `euro_product` INNER JOIN `euro_category` ON `euro_product`.`category`=`euro_category`.`id` WHERE `euro_category`.`name` LIKE '$name%'")->result();
+// return $query;
+// }
 
 public function contactUs($name,$telephone,$email,$comment)
 {
