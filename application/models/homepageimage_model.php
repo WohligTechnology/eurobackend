@@ -3,9 +3,9 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class homepageimage_model extends CI_Model
 {
-public function create($image1,$image2,$image3)
+public function create($image1,$image2,$image3,$link1,$link2,$link3)
 {
-$data=array("image1" => $image1,"image2" => $image2,"image3" => $image3);
+$data=array("image1" => $image1,"image2" => $image2,"image3" => $image3,"link1" => $link1,"link2" => $link2,"link3" => $link3);
 $query=$this->db->insert( "euro_homepageimage", $data );
 $id=$this->db->insert_id();
 if(!$query)
@@ -24,14 +24,14 @@ $this->db->where("id",$id);
 $query=$this->db->get("euro_homepageimage")->row();
 return $query;
 }
-public function edit($id,$image1,$image2,$image3)
+public function edit($id,$image1,$image2,$image3,$link1,$link2,$link3)
 {
 if($image1=="")
 {
 $image1=$this->homepageimage_model->getimage1byid($id);
 $image1=$image1->image1;
 }
-    
+
     if($image2=="")
 {
 $image2=$this->homepageimage_model->getimage2byid($id);
@@ -42,7 +42,7 @@ $image2=$image2->image2;
 $image3=$this->homepageimage_model->getimage3byid($id);
 $image3=$image3->image3;
 }
-$data=array("image1" => $image1,"image2" => $image2,"image3" => $image3);
+$data=array("image1" => $image1,"image2" => $image2,"image3" => $image3,"link1" => $link1,"link2" => $link2,"link3" => $link3);
 $this->db->where( "id", $id );
 $query=$this->db->update( "euro_homepageimage", $data );
 return 1;
@@ -69,7 +69,7 @@ return $query;
 }
 public function getdropdown()
 {
-$query=$this->db->query("SELECT * FROM `euro_homepageimage` ORDER BY `id` 
+$query=$this->db->query("SELECT * FROM `euro_homepageimage` ORDER BY `id`
                     ASC")->row();
 $return=array(
 "" => "Select Option"

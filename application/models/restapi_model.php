@@ -54,7 +54,7 @@ return $query;
 }
 public function getHomePageImage()
 {
-$query= $this->db->query("SELECT `id`, `image1`, `image2`, `image3` FROM `euro_homepageimage`")->result();
+$query= $this->db->query("SELECT `id`, `link1`,`image1`,`link2`, `image2`,`link3`, `image3` FROM `euro_homepageimage`")->result();
 return $query;
 }
 public function getGalleryImages()

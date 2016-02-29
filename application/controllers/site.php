@@ -882,13 +882,16 @@ public function createhomepageimagesubmit()
 $access=array("1");
 $this->checkaccess($access);
 $id=$this->input->get_post("id");
+$link1=$this->input->get_post("link1");
+$link2=$this->input->get_post("link2");
+$link3=$this->input->get_post("link3");
 $image1=$this->menu_model->createImage1();
 $image2=$this->menu_model->createImage2();
 $image3=$this->menu_model->createImage3();
 //    echo $image1;
 //    echo $image2;
 //    echo $image3;
-if($this->homepageimage_model->create($image1,$image2,$image3)==0)
+if($this->homepageimage_model->create($image1,$image2,$image3,$link1,$link2,$link3)==0)
 $data["alerterror"]="New homepageimage could not be created.";
 else
 $data["alertsuccess"]="homepageimage created Successfully.";
@@ -910,10 +913,13 @@ public function edithomepageimagesubmit()
 $access=array("1");
 $this->checkaccess($access);
 $id=$this->input->get_post("id");
+$link1=$this->input->get_post("link1");
+$link2=$this->input->get_post("link2");
+$link3=$this->input->get_post("link3");
 $image1=$this->menu_model->createImage1();
 $image2=$this->menu_model->createImage2();
 $image3=$this->menu_model->createImage3();
-if($this->homepageimage_model->edit($id,$image1,$image2,$image3)==0)
+if($this->homepageimage_model->edit($id,$image1,$image2,$image3,$link1,$link2,$link3)==0)
 $data["alerterror"]="New homepageimage could not be Updated.";
 else
 $data["alertsuccess"]="homepageimage Updated Successfully.";

@@ -6,6 +6,13 @@
 <div class="row">
 <form class='col s12' method='post' action='<?php echo site_url("site/edithomepageimagesubmit");?>' enctype= 'multipart/form-data'>
 <input type="hidden" id="normal-field" class="form-control" name="id" value="<?php echo set_value('id',$before->id);?>" style="display:none;">
+<div class="row">
+<div class="input-field col s6">
+<label for="Order">Image1 Link</label>
+<input type="text" id="link1" name="link1" value='<?php echo set_value('link1',$before->link1);?>'>
+</div>
+</div>
+
 <div class="row big">
 			<div class="file-field input-field col m6 s12">
 				<span class="img-center big image1">
@@ -25,6 +32,13 @@
 <!--				<div class="md4"><a class="waves-effect waves-light btn red clearimg input-field ">Clear Image</a></div>-->
 			</div>
 		</div>
+
+		<div class="row">
+		<div class="input-field col s6">
+		<label for="Order">Image2 Link</label>
+		<input type="text" id="link2" name="link2" value='<?php echo set_value('link2',$before->link2);?>'>
+		</div>
+		</div>
     <div class="row small">
 			<div class="file-field input-field col m6 s12">
 				<span class="img-center big image1">
@@ -43,6 +57,12 @@
 				</div>
 <!--				<div class="md4"><a class="waves-effect waves-light btn red clearimg input-field ">Clear Image</a></div>-->
 			</div>
+		</div>
+		<div class="row">
+		<div class="input-field col s6">
+		<label for="Order">Image3 Link</label>
+		<input type="text" id="link3" name="link3" value='<?php echo set_value('link3',$before->link3);?>'>
+		</div>
 		</div>
    <div class="row small">
 			<div class="file-field input-field col m6 s12">
