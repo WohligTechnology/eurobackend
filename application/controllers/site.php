@@ -1913,12 +1913,13 @@ $this->load->view("template",$data);
 else
 {
 $id=$this->input->get_post("id");
+$order=$this->input->get_post("order");
 $category=$this->input->get_post("category");
 $subcategory=$this->input->get_post("subcategory");
 $name=$this->input->get_post("name");
 $image=$this->menu_model->createImage();
 $size=$this->input->get_post("size");
-if($this->product_model->create($category,$subcategory,$name,$image,$size)==0)
+if($this->product_model->create($order,$category,$subcategory,$name,$image,$size)==0)
 $data["alerterror"]="New product could not be created.";
 else
 $data["alertsuccess"]="product created Successfully.";
@@ -1960,12 +1961,13 @@ $this->load->view("template",$data);
 else
 {
 $id=$this->input->get_post("id");
+$order=$this->input->get_post("order");
 $category=$this->input->get_post("category");
 $subcategory=$this->input->get_post("subcategory");
 $name=$this->input->get_post("name");
 $image=$this->menu_model->createImage();
 $size=$this->input->get_post("size");
-if($this->product_model->edit($id,$category,$subcategory,$name,$image,$size)==0)
+if($this->product_model->edit($id,$order,$category,$subcategory,$name,$image,$size)==0)
 $data["alerterror"]="New product could not be Updated.";
 else
 $data["alertsuccess"]="product Updated Successfully.";

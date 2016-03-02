@@ -5,6 +5,12 @@
 </div>
 <div class="row">
 <form class='col s12' method='post' action='<?php echo site_url("site/editproductsubmit");?>' enctype= 'multipart/form-data'>
+	<div class="row">
+	<div class="input-field col s6">
+	<label for="order">Order</label>
+	<input type="text" id="order" name="order" value='<?php echo set_value('order',$before->order);?>'>
+	</div>
+	</div>
 <input type="hidden" id="normal-field" class="form-control" name="id" value="<?php echo set_value('id',$before->id);?>" style="display:none;">
 <div class=" row">
 <div class=" input-field col s12 m6">

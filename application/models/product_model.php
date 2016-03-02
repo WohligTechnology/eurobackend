@@ -3,9 +3,9 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class product_model extends CI_Model
 {
-public function create($category,$subcategory,$name,$image,$size)
+public function create($order,$category,$subcategory,$name,$image,$size)
 {
-$data=array("category" => $category,"subcategory" => $subcategory,"name" => $name,"image" => $image,"size" => $size);
+$data=array("order" => $order,"category" => $category,"subcategory" => $subcategory,"name" => $name,"image" => $image,"size" => $size);
 $query=$this->db->insert( "euro_product", $data );
 $id=$this->db->insert_id();
 if(!$query)
@@ -24,14 +24,14 @@ $this->db->where("id",$id);
 $query=$this->db->get("euro_product")->row();
 return $query;
 }
-public function edit($id,$category,$subcategory,$name,$image,$size)
+public function edit($id,$order,$category,$subcategory,$name,$image,$size)
 {
 if($image=="")
 {
 $image=$this->product_model->getimagebyid($id);
 $image=$image->image;
 }
-$data=array("category" => $category,"subcategory" => $subcategory,"name" => $name,"image" => $image,"size" => $size);
+$data=array("order" => $order,"category" => $category,"category" => $category,"subcategory" => $subcategory,"name" => $name,"image" => $image,"size" => $size);
 $this->db->where( "id", $id );
 $query=$this->db->update( "euro_product", $data );
 return 1;

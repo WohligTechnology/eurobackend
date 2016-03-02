@@ -3,6 +3,12 @@
 <h4 class="pad-left-15 capitalize">Create product</h4>
 </div>
 <form class='col s12' method='post' action='<?php echo site_url("site/createproductsubmit");?>' enctype= 'multipart/form-data'>
+  <div class="row">
+  <div class="input-field col s6">
+  <label for="order">Order</label>
+  <input type="text" id="order" name="order" value='<?php echo set_value('order');?>'>
+  </div>
+  </div>
 <div class=" row">
 <div class=" input-field col s6">
 <?php echo form_dropdown("category",$category,set_value('category'));?>

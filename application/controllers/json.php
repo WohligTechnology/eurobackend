@@ -616,10 +616,9 @@ $this->chintantable->createelement("`euro_product`.`id`", '1', "ID", "id");
 $this->chintantable->createelement("`euro_product`.`name`", '1', "name", "name");
 $this->chintantable->createelement("`euro_product`.`image`", '0', "image", "image");
 $this->chintantable->createelement("`euro_product`.`size`", '0', "size", "size");
+$this->chintantable->createelement("`euro_product`.`order`", '0', "order", "order");
 $search=$this->input->get_post("search");
 $pageno=$this->input->get_post("pageno");
-$orderby=$this->input->get_post("orderby");
-$orderorder=$this->input->get_post("orderorder");
 $maxrow=$this->input->get_post("maxrow");
 if($maxrow=="")
 {
@@ -627,14 +626,14 @@ $maxrow=  20;
 }
 if($orderby=="")
 {
-$orderby="id";
-$orderorder="DESC";
+  $orderby="order";
+  $orderorder="ASC";
 }
 
 if($name != "")
 {
 
-  $where .= " AND `euro_category`.`name` LIKE '$name%' OR `euro_subcategory`.`name` LIKE '$name%' ";
+  $where .= " AND `euro_category`.`name` = '$name' OR `euro_subcategory`.`name` = '$name' ";
 }
 $data["message"]=$this->chintantable->query($pageno, $maxrow, $orderby, $orderorder, $search,"", "FROM `euro_product` INNER JOIN `euro_category` ON `euro_product`.`category`=`euro_category`.`id` INNER JOIN `euro_subcategory` ON `euro_product`.`subcategory`=`euro_subcategory`.`id`", "$where");
 $this->load->view("json",$data);
@@ -655,17 +654,18 @@ public function getProductsByCategory() {
     $this->chintantable->createelement('`euro_product`.`name`','1','name', 'name');
     $this->chintantable->createelement('`euro_product`.`image`','1','image', 'image');
     $this->chintantable->createelement('`euro_product`.`size`','1','size', 'size');
+    $this->chintantable->createelement('`euro_product`.`order`','1','order', 'order');
     $search = $this->input->get_post('search');
     $pageno = $this->input->get_post('pageno');
-    $orderby = "price";
+
     if($orderby=="")
     {
-    $orderby="id";
+    $orderby="order";
     $orderorder="ASC";
     }
 
     $maxrow = $this->input->get_post('maxrow');
-     $data3["data"] =  $this->chintantable->query($pageno, $maxrow, $orderby, $orderorder, $search,"", "FROM `euro_product` LEFT OUTER JOIN `euro_category` on `euro_product`.category=`euro_category`.`id`","WHERE `euro_product`.`category` = '$categoryid'", "$where", "GROUP BY `euro_product`.`id`");
+     $data3["data"] =  $this->chintantable->query($pageno, $maxrow, $orderby, $orderorder, $search,"", "FROM `euro_product` LEFT OUTER JOIN `euro_category` on `euro_product`.category=`euro_category`.`id`","WHERE `euro_product`.`category` = '$categoryid'", "$where", "GROUP BY `euro_product`.`id`","$orderby");
 $data3["filter"] = $this->restapi_model->getFiltersLater($data3["data"]->querycomplete);
 
         $data["message"] = $data3;
