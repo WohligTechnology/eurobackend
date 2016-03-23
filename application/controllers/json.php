@@ -634,7 +634,7 @@ if($name != "")
 {
 
   // $where .= " AND `euro_product`.`name`= \"$name\"";
-  $where .= " AND `euro_category`.`name` = \"$name\" OR `euro_subcategory`.`name` = \"$name\" OR `euro_product`.`name`= \"$name\"";
+  $where .= " AND `euro_category`.`name` = \"$name\" OR `euro_subcategory`.`name` = \"$name\" OR `euro_product`.`name` LIKE \"%$name%\"";
 }
 $data["message"]=$this->chintantable->query($pageno, $maxrow, $orderby, $orderorder, $search,"", "FROM `euro_product` INNER JOIN `euro_category` ON `euro_product`.`category`=`euro_category`.`id` INNER JOIN `euro_subcategory` ON `euro_product`.`subcategory`=`euro_subcategory`.`id`", "$where");
 $this->load->view("json",$data);
