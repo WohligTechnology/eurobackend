@@ -120,6 +120,55 @@ public function contactUs($name,$telephone,$email,$comment)
   $id=$this->db->insert_id();
   if($id != "")
   {
+    $message = "<html><body><div id=':1fn' class='a3s adM' style='overflow: hidden;'>
+    <p style='color:#000;font-family:Roboto;font-size:14px'>Name : $name <br/>
+  Phone : $telephone <br/>
+  Email : $email <br/>
+  Query : $comment
+    </p>
+
+</div></body></html>";
+$url = 'https://api.sendgrid.com/';
+$user = 'poojathakare';
+$pass = 'wohlig123';
+$request =  $url.'api/mail.send.json';
+
+$json_string = array(
+
+'to' => array(
+ 'info@europratik.com','catch_umang@yahoo.co.in','amitwohlig@gmail.com '
+),
+'category' => 'test_category'
+);
+
+
+$params = array(
+'api_user'  => $user,
+'api_key'   => $pass,
+'x-smtpapi' => json_encode($json_string),
+'to'        => 'info@europratik.com',
+'subject'   => 'Contact Form Submission',
+'html'      => $message,
+'text'      => 'testttttttttt',
+'from'      => 'info@europratik.com',
+//  'from'      => 'info@willnevergrowup.com',
+);
+
+$session = curl_init($request);
+// Tell curl to use HTTP POST
+curl_setopt ($session, CURLOPT_POST, true);
+// Tell curl that this is the body of the POST
+curl_setopt ($session, CURLOPT_POSTFIELDS, $params);
+// Tell curl not to return headers, but do return the response
+curl_setopt($session, CURLOPT_HEADER, false);
+// Tell PHP not to use SSLv3 (instead opting for TLS)
+curl_setopt($session, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+// print everything out
+// print_r($response);
+
+// obtain response
+$response = curl_exec($session);
     $object = new stdClass();
     $object->value = true;
     return $object;
