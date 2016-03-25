@@ -118,16 +118,17 @@ public function contactUs($name,$telephone,$email,$comment)
 {
   $this->db->query("INSERT INTO `contact`(`name`,`telephone`,`email`,`comment`) VALUE('$name','$telephone','$email','$comment')");
   $id=$this->db->insert_id();
-  if($id != "")
-  {
-    $message = "<html><body><div id=':1fn' class='a3s adM' style='overflow: hidden;'>
-    <p style='color:#000;font-family:Roboto;font-size:14px'>Name : $name <br/>
-  Phone : $telephone <br/>
-  Email : $email <br/>
-  Query : $comment
-    </p>
+
+  $message = "<html><body><div id=':1fn' class='a3s adM' style='overflow: hidden;'>
+  <p style='color:#000;font-family:Roboto;font-size:14px'>Name : $name <br/>
+Phone : $telephone <br/>
+Email : $email <br/>
+Comment : $comment
+  </p>
 
 </div></body></html>";
+if(!empty($email))
+{
 $url = 'https://api.sendgrid.com/';
 $user = 'poojathakare';
 $pass = 'wohlig123';
@@ -136,7 +137,7 @@ $request =  $url.'api/mail.send.json';
 $json_string = array(
 
 'to' => array(
- 'info@europratik.com','catch_umang@yahoo.co.in','amitwohlig@gmail.com '
+'info@europratik.com','catch_umang@yahoo.co.in','amitwohlig@gmail.com '
 ),
 'category' => 'test_category'
 );
@@ -168,6 +169,10 @@ curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
 // print_r($response);
 
 // obtain response
+}
+  if($id != "")
+  {
+
 $response = curl_exec($session);
     $object = new stdClass();
     $object->value = true;
