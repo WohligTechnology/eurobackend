@@ -14,6 +14,12 @@ public function getExclusivePdt()
   $query=$this->db->query("SELECT `id`,`link`, `image1`, `image2` FROM `euro_exclusiveproduct` WHERE 1")->result();
   return $query;
 }
+public function getProductDetail($id)
+{
+  $query=$this->db->query("SELECT `euro_category`.`name` AS 'categoryname',`euro_subcategory`.`name` AS 'seriesname',`euro_product`.`name`,`euro_product`.`image`,`euro_product`.`size` FROM `euro_product` LEFT OUTER JOIN
+`euro_category` ON `euro_category`.`id` = `euro_product`.`category` LEFT OUTER JOIN `euro_subcategory` ON `euro_subcategory`.`id` = `euro_product`.`subcategory` WHERE `euro_product`.`id`=$id")->row();
+  return $query;
+}
 
 public function getSubscribers($email){
         $query1=$this->db->query("SELECT * FROM `euro_subscribe` WHERE `email`='$email'");
@@ -137,7 +143,8 @@ $request =  $url.'api/mail.send.json';
 $json_string = array(
 
 'to' => array(
-'info@europratik.com','catch_umang@yahoo.co.in','amitwohlig@gmail.com '
+// 'info@europratik.com','catch_umang@yahoo.co.in','amitwohlig@gmail.com '
+'vinodwohlig@gmail.com'
 ),
 'category' => 'test_category'
 );

@@ -533,6 +533,12 @@ $this->load->view("json",$data);
 $data["message"]=$this->restapi_model->getslider();
 $this->load->view("json",$data);
 }
+ public function getProductDetail()
+{
+  $id=$this->input->get_post("id");
+$data["message"]=$this->restapi_model->getProductDetail($id);
+$this->load->view("json",$data);
+}
 
 public function getExclusivePdt()
 {
