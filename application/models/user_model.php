@@ -679,4 +679,3 @@ class User_model extends CI_Model
     $query=$this->db->query("DELETE FROM `fynx_cart` WHERE `product`='$id' AND `user`='$user'");
     }
 }
-?>

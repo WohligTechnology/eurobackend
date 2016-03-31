@@ -166,4 +166,3 @@ class Menu extends CI_Controller
 		$this->load->view('template',$data);
 	}
 }
-?>

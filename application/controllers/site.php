@@ -2205,4 +2205,3 @@ $this->load->view("redirect",$data);
     $this->load->view("json",$data);
 }
 }
-?>

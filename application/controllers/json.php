@@ -682,14 +682,21 @@ $data3["filter"] = $this->restapi_model->getFiltersLater($data3["data"]->queryco
 public function contactUs()
 {
   $data = json_decode(file_get_contents('php://input'), true);
-  $name = $data['name'];
-  $telephone = $data['telephone'];
-  $email = $data['email'];
-  $comment = $data['comment'];
-  $city = $data['city'];
-  $state = $data['state'];
+    if(empty($data)){
+        $data['message'] =0;
+    }
+    else{
+          $name = $data['name'];
+          $telephone = $data['telephone'];
+          $email = $data['email'];
+          $comment = $data['comment'];
+          $city = $data['city'];
+          $state = $data['state'];
+        $data['message'] = $this->restapi_model->contactUs($name,$telephone,$email,$comment,$city,$state);
+    }
+ 
 
-$data['message'] = $this->restapi_model->contactUs($name,$telephone,$email,$comment,$city,$state);
+
 $this->load->view('json', $data);
 }
-} ?>
+}

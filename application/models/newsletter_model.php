@@ -43,4 +43,3 @@ $query=$this->db->get("contact")->row();
 return $query;
 }   
 }
-?>
