@@ -79,7 +79,7 @@ else
     $db['default']['username'] = 'root';
     $db['default']['password'] = '';
     $db['default']['database'] = 'euro';
-    $db['default']['dbdriver'] = 'mysqli';
+    $db['default']['dbdriver'] = 'mysql';
     $db['default']['dbprefix'] = '';
     $db['default']['pconnect'] = TRUE;
     $db['default']['db_debug'] = TRUE;

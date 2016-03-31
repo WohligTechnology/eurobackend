@@ -686,8 +686,10 @@ public function contactUs()
   $telephone = $data['telephone'];
   $email = $data['email'];
   $comment = $data['comment'];
+  $city = $data['city'];
+  $state = $data['state'];
 
-$data['message'] = $this->restapi_model->contactUs($name,$telephone,$email,$comment);
+$data['message'] = $this->restapi_model->contactUs($name,$telephone,$email,$comment,$city,$state);
 $this->load->view('json', $data);
 }
 

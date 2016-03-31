@@ -120,9 +120,9 @@ return $query;
 // return $query;
 // }
 
-public function contactUs($name,$telephone,$email,$comment)
+public function contactUs($name,$telephone,$email,$comment,$city,$state)
 {
-  $this->db->query("INSERT INTO `contact`(`name`,`telephone`,`email`,`comment`) VALUE('$name','$telephone','$email','$comment')");
+  $this->db->query("INSERT INTO `contact`(`name`,`telephone`,`email`,`comment`,`city`,`state`) VALUE('$name','$telephone','$email','$comment','$city','$state')");
   $id=$this->db->insert_id();
 
   $message = "<html><body><div id=':1fn' class='a3s adM' style='overflow: hidden;'>
