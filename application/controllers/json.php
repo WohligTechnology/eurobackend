@@ -692,7 +692,4 @@ public function contactUs()
 $data['message'] = $this->restapi_model->contactUs($name,$telephone,$email,$comment,$city,$state);
 $this->load->view('json', $data);
 }
-
-
-
 } ?>

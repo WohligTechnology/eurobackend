@@ -192,6 +192,5 @@ $response = curl_exec($session);
   }
 
 }
-
 }
 ?>

@@ -41,7 +41,6 @@ return $query;
 $this->db->where("id",$id);
 $query=$this->db->get("contact")->row();
 return $query;
-}
-    
+}   
 }
 ?>

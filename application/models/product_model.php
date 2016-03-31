@@ -59,9 +59,6 @@ $return[$row->id]=$row->name;
 }
 return $return;
 }
-
-
-
 public function getproductdropdown()
 {
 $query=$this->db->query("SELECT * FROM `euro_product`  ORDER BY `id` ASC")->result();
