@@ -549,15 +549,18 @@ public function getExclusivePdt()
 public function getSubscribers()
 {
   $email=$this->input->get_post("email");
-
   if(empty($email)){
       $data["message"]=0;
   }
   else{
     $data["message"]=$this->restapi_model->getSubscribers($email);
   }
-
   $this->load->view("json",$data);
+}
+
+public function testmail()
+{
+    $data["message"]=$this->restapi_model->testmail();
 }
 
 public function getAllProducts()
@@ -694,7 +697,7 @@ public function contactUs()
           $state = $data['state'];
         $data['message'] = $this->restapi_model->contactUs($name,$telephone,$email,$comment,$city,$state);
     }
- 
+
 
 
 $this->load->view('json', $data);
