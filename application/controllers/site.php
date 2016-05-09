@@ -561,7 +561,7 @@ $this->load->view("json",$data);
 
 public function viewhomeslider()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="viewhomeslider";
 $data["base_url"]=site_url("site/viewhomesliderjson");
@@ -611,7 +611,7 @@ $this->load->view("json",$data);
 
 public function createhomeslider()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="createhomeslider";
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
@@ -620,7 +620,7 @@ $this->load->view("template",$data);
 }
 public function createhomeslidersubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->form_validation->set_rules("order","Order","trim");
 $this->form_validation->set_rules("status","Status","trim");
@@ -649,7 +649,7 @@ $this->load->view("redirect",$data);
 }
 public function edithomeslider()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="edithomeslider";
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
@@ -659,7 +659,7 @@ $this->load->view("template",$data);
 }
 public function edithomeslidersubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","ID","trim");
 $this->form_validation->set_rules("order","Order","trim");
@@ -821,7 +821,7 @@ $this->load->view("redirect",$data);
 }
 public function viewhomepageimage()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="viewhomepageimage";
 $data["base_url"]=site_url("site/viewhomepageimagejson");
@@ -871,7 +871,7 @@ $this->load->view("json",$data);
 
 public function createhomepageimage()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="createhomepageimage";
 $data["title"]="Create homepageimage";
@@ -901,7 +901,7 @@ $this->load->view("redirect",$data);
 }
 public function edithomepageimage()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="edithomepageimage";
 $data["title"]="Edit homepageimage";
@@ -910,7 +910,7 @@ $this->load->view("template",$data);
 }
 public function edithomepageimagesubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $id=$this->input->get_post("id");
 $link1=$this->input->get_post("link1");
@@ -937,7 +937,7 @@ $this->load->view("redirect",$data);
 }
 public function viewexclusiveproduct()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="viewexclusiveproduct";
 $data["base_url"]=site_url("site/viewexclusiveproductjson");
@@ -987,7 +987,7 @@ $this->load->view("json",$data);
 
 public function createexclusiveproduct()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="createexclusiveproduct";
 $data["title"]="Create exclusiveproduct";
@@ -995,7 +995,7 @@ $this->load->view("template",$data);
 }
 public function createexclusiveproductsubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $id=$this->input->get_post("id");
 $image1=$this->menu_model->createImage1();
@@ -1011,7 +1011,7 @@ $this->load->view("redirect",$data);
 }
 public function editexclusiveproduct()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="editexclusiveproduct";
 $data["title"]="Edit exclusiveproduct";
@@ -1020,7 +1020,7 @@ $this->load->view("template",$data);
 }
 public function editexclusiveproductsubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","ID","trim");
 $this->form_validation->set_rules("image1","Image1","trim");
@@ -1084,7 +1084,7 @@ $this->load->view("redirect",$data);
 }
 public function viewpopularproduct()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="viewpopularproduct";
 $data["base_url"]=site_url("site/viewpopularproductjson");
@@ -1144,7 +1144,7 @@ $this->load->view("json",$data);
 
 public function createpopularproduct()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="createpopularproduct";
 $data['status'] =$this->user_model->getstatusdropdown();
@@ -1155,7 +1155,7 @@ $this->load->view("template",$data);
 }
 public function createpopularproductsubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->form_validation->set_rules("order","Order","trim");
 $this->form_validation->set_rules("status","Status","trim");
@@ -1190,7 +1190,7 @@ $this->load->view("redirect",$data);
 }
 public function editpopularproduct()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="editpopularproduct";
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
@@ -1201,7 +1201,7 @@ $this->load->view("template",$data);
 }
 public function editpopularproductsubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","ID","trim");
 $this->form_validation->set_rules("order","Order","trim");
@@ -1270,7 +1270,7 @@ $this->load->view("redirect",$data);
 }
 public function viewcategory()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="viewcategory";
 $data["base_url"]=site_url("site/viewcategoryjson");
@@ -1335,7 +1335,7 @@ $this->load->view("json",$data);
 
 public function createcategory()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="createcategory";
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
@@ -1344,7 +1344,7 @@ $this->load->view("template",$data);
 }
 public function createcategorysubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->form_validation->set_rules("order","Order","trim");
 $this->form_validation->set_rules("status","Status","trim");
@@ -1397,7 +1397,7 @@ $this->load->view("redirect",$data);
 }
 public function editcategory()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="editcategory";
 $data["title"]="Edit category";
@@ -1407,7 +1407,7 @@ $this->load->view("template",$data);
 }
 public function editcategorysubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","ID","trim");
 $this->form_validation->set_rules("order","Order","trim");
@@ -1524,7 +1524,7 @@ $this->load->view("redirect",$data);
 }
 public function viewgallery()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="viewgallery";
 $data["base_url"]=site_url("site/viewgalleryjson");
@@ -1579,7 +1579,7 @@ $this->load->view("json",$data);
 
 public function creategallery()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="creategallery";
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
@@ -1589,7 +1589,7 @@ $this->load->view("template",$data);
 }
 public function creategallerysubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->form_validation->set_rules("category","Category","trim");
 $this->form_validation->set_rules("order","Order","trim");
@@ -1621,7 +1621,7 @@ $this->load->view("redirect",$data);
 }
 public function editgallery()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="editgallery";
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
@@ -1632,7 +1632,7 @@ $this->load->view("template",$data);
 }
 public function editgallerysubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","ID","trim");
 $this->form_validation->set_rules("category","Category","trim");
@@ -1674,7 +1674,7 @@ $this->load->view("redirect",$data);
 }
 public function viewsubcategory()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="viewsubcategory";
 $data["base_url"]=site_url("site/viewsubcategoryjson");
@@ -1729,7 +1729,7 @@ $this->load->view("json",$data);
 
 public function createsubcategory()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="createsubcategory";
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
@@ -1739,7 +1739,7 @@ $this->load->view("template",$data);
 }
 public function createsubcategorysubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->form_validation->set_rules("order","Order","trim");
 $this->form_validation->set_rules("status","Status","trim");
@@ -1771,7 +1771,7 @@ $this->load->view("redirect",$data);
 }
 public function editsubcategory()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="editsubcategory";
 $data[ 'status' ] =$this->user_model->getstatusdropdown();
@@ -1782,7 +1782,7 @@ $this->load->view("template",$data);
 }
 public function editsubcategorysubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","ID","trim");
 $this->form_validation->set_rules("order","Order","trim");
@@ -1824,7 +1824,7 @@ $this->load->view("redirect",$data);
 }
 public function viewproduct()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="viewproduct";
 $data["base_url"]=site_url("site/viewproductjson");
@@ -1884,7 +1884,7 @@ $this->load->view("json",$data);
 
 public function createproduct()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="createproduct";
 $data[ 'category' ] =$this->category_model->getdropdown();
@@ -1894,7 +1894,7 @@ $this->load->view("template",$data);
 }
 public function createproductsubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->form_validation->set_rules("category","Category","trim");
 $this->form_validation->set_rules("subcategory","Sub category","trim");
@@ -1929,7 +1929,7 @@ $this->load->view("redirect",$data);
 }
 public function editproduct()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="editproduct";
 $data[ 'category' ] =$this->category_model->getdropdown();
@@ -1940,7 +1940,7 @@ $this->load->view("template",$data);
 }
 public function editproductsubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","ID","trim");
 $this->form_validation->set_rules("category","Category","trim");
@@ -1985,7 +1985,7 @@ $this->load->view("redirect",$data);
 }
 public function viewdownload()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="viewdownload";
 $data["base_url"]=site_url("site/viewdownloadjson");
@@ -2035,7 +2035,7 @@ $this->load->view("json",$data);
 
 public function createdownload()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="createdownload";
 $data["title"]="Create Download";
@@ -2043,7 +2043,7 @@ $this->load->view("template",$data);
 }
 public function createdownloadsubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $id=$this->input->get_post("id");
 // $image=$this->menu_model->createImage1();
@@ -2071,7 +2071,7 @@ $this->load->view("redirect",$data);
 }
 public function editdownload()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $data["page"]="editdownload";
 $data["title"]="Edit Download";
@@ -2080,7 +2080,7 @@ $this->load->view("template",$data);
 }
 public function editdownloadsubmit()
 {
-$access=array("1");
+$access=array("1","2");
 $this->checkaccess($access);
 $this->form_validation->set_rules("id","ID","trim");
 $this->form_validation->set_rules("image1","Image1","trim");
@@ -2137,7 +2137,7 @@ $this->download_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewdownload";
 $this->load->view("redirect",$data);
 }
-    
+
        // contact
 
     function viewcontact()
