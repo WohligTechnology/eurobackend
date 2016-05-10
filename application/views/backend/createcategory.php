@@ -34,7 +34,7 @@
  <span style=" display: block;
     padding-top: 30px;">1600px X 500px</span>
 </div>
-<div class="row big">
+<!-- <div class="row big">
 <div class="file-field input-field col s12 m6">
 <div class="btn blue darken-4">
 <span>Banner 2</span>
@@ -46,7 +46,7 @@
 </div>
  <span style=" display: block;
     padding-top: 30px;">1600px X 500px</span>
-</div>
+</div> -->
 <div class="row">
 <div class="file-field input-field col s12 m6">
 <div class="btn blue darken-4">
@@ -69,7 +69,7 @@
 </div>
 </div>
 </div>
-<div class="row">
+<!-- <div class="row">
 <div class="file-field input-field col s12 m6">
 <div class="btn blue darken-4">
 <span>Pdf download</span>
@@ -79,7 +79,7 @@
 <input class="file-path validate" type="text" placeholder="Upload one or more files" value='<?php echo set_value('pdfdownload');?>'>
 </div>
 </div>
-</div>
+</div> -->
 <div class="row">
 <div class="col s12 m6">
 <button type="submit" class="btn btn-primary waves-effect waves-light blue darken-4">Save</button>
