@@ -2199,4 +2199,139 @@ $this->load->view("redirect",$data);
     $data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `contact`");
     $this->load->view("json",$data);
 }
+
+public function viewnotification()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data["page"]="viewnotification";
+$data["base_url"]=site_url("site/viewnotificationjson");
+$data["title"]="View notification";
+$this->load->view("template",$data);
+}
+function viewnotificationjson()
+{
+$elements=array();
+$elements[0]=new stdClass();
+$elements[0]->field="`notification`.`id`";
+$elements[0]->sort="1";
+$elements[0]->header="ID";
+$elements[0]->alias="id";
+$elements[1]=new stdClass();
+$elements[1]->field="`notification`.`email`";
+$elements[1]->sort="1";
+$elements[1]->header="Email";
+$elements[1]->alias="email";
+$elements[2]=new stdClass();
+$elements[2]->field="`notification`.`timestamp`";
+$elements[2]->sort="1";
+$elements[2]->header="Timestamp";
+$elements[2]->alias="timestamp";
+$elements[3]=new stdClass();
+$elements[3]->field="`notification`.`text`";
+$elements[3]->sort="1";
+$elements[3]->header="Text";
+$elements[3]->alias="text";
+$search=$this->input->get_post("search");
+$pageno=$this->input->get_post("pageno");
+$orderby=$this->input->get_post("orderby");
+$orderorder=$this->input->get_post("orderorder");
+$maxrow=$this->input->get_post("maxrow");
+if($maxrow=="")
+{
+$maxrow=20;
+}
+if($orderby=="")
+{
+$orderby="id";
+$orderorder="ASC";
+}
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `notification`");
+$this->load->view("json",$data);
+}
+
+public function createnotification()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data["page"]="createnotification";
+$data["title"]="Create notification";
+$this->load->view("template",$data);
+}
+public function createnotificationsubmit()
+{
+$access=array("1");
+$this->checkaccess($access);
+$this->form_validation->set_rules("email","Email","trim");
+$this->form_validation->set_rules("timestamp","Timestamp","trim");
+if($this->form_validation->run()==FALSE)
+{
+$data["alerterror"]=validation_errors();
+$data["page"]="createnotification";
+$data["title"]="Create notification";
+$this->load->view("template",$data);
+}
+else
+{
+$id=$this->input->get_post("id");
+$email=$this->input->get_post("email");
+$text=$this->input->get_post("text");
+$order=$this->input->get_post("order");
+if($this->notification_model->create($email,$timestamp,$text,$order)==0)
+$data["alerterror"]="New notification could not be created.";
+else
+$data["alertsuccess"]="notification created Successfully.";
+$data["redirect"]="site/viewnotification";
+$this->load->view("redirect",$data);
+}
+}
+public function editnotification()
+{
+$access=array("1");
+$this->checkaccess($access);
+$data["page"]="editnotification";
+$data["title"]="Edit notification";
+$data["before"]=$this->notification_model->beforeedit($this->input->get("id"));
+$this->load->view("template",$data);
+}
+public function editnotificationsubmit()
+{
+$access=array("1");
+$this->checkaccess($access);
+$this->form_validation->set_rules("id","ID","trim");
+$this->form_validation->set_rules("email","Email","trim");
+$this->form_validation->set_rules("timestamp","Timestamp","trim");
+if($this->form_validation->run()==FALSE)
+{
+$data["alerterror"]=validation_errors();
+$data["page"]="editnotification";
+$data["title"]="Edit notification";
+$data["before"]=$this->notification_model->beforeedit($this->input->get("id"));
+$this->load->view("template",$data);
+}
+else
+{
+$id=$this->input->get_post("id");
+$email=$this->input->get_post("email");
+$text=$this->input->get_post("text");
+$order=$this->input->get_post("order");
+$timestamp=$this->input->get_post("timestamp");
+if($this->notification_model->edit($id,$email,$timestamp,$text,$order)==0)
+$data["alerterror"]="New notification could not be Updated.";
+else
+$data["alertsuccess"]="notification Updated Successfully.";
+$data["redirect"]="site/viewnotification";
+$this->load->view("redirect",$data);
+}
+}
+public function deletenotification()
+{
+$access=array("1");
+$this->checkaccess($access);
+$this->notification_model->delete($this->input->get("id"));
+$data["redirect"]="site/viewnotification";
+$this->load->view("redirect",$data);
+}
+
+
 }

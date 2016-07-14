@@ -617,6 +617,12 @@ public function getCategoryById()
   $data["message"]=$this->restapi_model->getCategoryById($id);
   $this->load->view("json",$data);
 }
+
+public function getNotification()
+{
+  $data["message"]=$this->restapi_model->getNotification();
+  $this->load->view("json",$data);
+}
 public function SearchByCategory()
 {
   $name=$this->input->get_post("name");
