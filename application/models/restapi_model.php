@@ -129,7 +129,7 @@ return $query;
 }
 public function series($id)
 {
-$query= $this->db->query("SELECT `euro_subcategory`.`id`,`euro_subcategory`.`name` FROM `euro_subcategory` WHERE `category`='$id' ORDER BY `order`")->result();
+$query= $this->db->query("SELECT `euro_subcategory`.`id`,`euro_subcategory`.`name`,`euro_category`.`name` AS 'categoryname' FROM `euro_subcategory` LEFT OUTER JOIN `euro_category` ON `euro_category`.`id` = `euro_subcategory`.`category` WHERE `euro_subcategory`.`category`='$id' ORDER BY `euro_subcategory`.`order`")->result();
 return $query;
 }
 public function getCategoryById($id)
