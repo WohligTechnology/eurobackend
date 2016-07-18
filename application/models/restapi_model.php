@@ -129,7 +129,12 @@ return $query;
 }
 public function series($id)
 {
-$query= $this->db->query("SELECT `euro_subcategory`.`id`,`euro_subcategory`.`name`,`euro_category`.`name` AS 'categoryname' FROM `euro_subcategory` LEFT OUTER JOIN `euro_category` ON `euro_category`.`id` = `euro_subcategory`.`category` WHERE `euro_subcategory`.`category`='$id' ORDER BY `euro_subcategory`.`order`")->result();
+$query= $this->db->query("SELECT `euro_subcategory`.`id` AS 'id',`euro_subcategory`.`name`,`euro_category`.`name` AS 'categoryname' FROM `euro_subcategory` LEFT OUTER JOIN `euro_category` ON `euro_category`.`id` = `euro_subcategory`.`category` WHERE `euro_subcategory`.`category`='$id' ORDER BY `euro_subcategory`.`order`")->result();
+// print_r($query);
+foreach ($query as $subcat) {
+  $s = $this->db->query("SELECT `image` FROM `euro_product` WHERE `subcategory`='$subcat->id'")->row();
+  $subcat->image= $s->image;
+}
 return $query;
 }
 public function getCategoryById($id)
