@@ -2332,6 +2332,153 @@ $this->notification_model->delete($this->input->get("id"));
 $data["redirect"]="site/viewnotification";
 $this->load->view("redirect",$data);
 }
+public function viewarrival()
+{
+$access=array("1","2");
+$this->checkaccess($access);
+$data["page"]="viewarrival";
+$data["base_url"]=site_url("site/viewarrivaljson");
+$data["title"]="View arrival";
+$this->load->view("template",$data);
+}
+function viewarrivaljson()
+{
+$elements=array();
+$elements[0]=new stdClass();
+$elements[0]->field="`euro_arrival`.`id`";
+$elements[0]->sort="1";
+$elements[0]->header="ID";
+$elements[0]->alias="id";
+$elements[1]=new stdClass();
+$elements[1]->field="`euro_arrival`.`image1`";
+$elements[1]->sort="1";
+$elements[1]->header="Image1";
+$elements[1]->alias="image1";
+// $elements[2]=new stdClass();
+// $elements[2]->field="`euro_arrival`.`image2`";
+// $elements[2]->sort="1";
+// $elements[2]->header="Image2";
+// $elements[2]->alias="image2";
+$elements[3]=new stdClass();
+$elements[3]->field="`euro_arrival`.`order`";
+$elements[3]->sort="1";
+$elements[3]->header="order";
+$elements[3]->alias="order";
+$search=$this->input->get_post("search");
+$pageno=$this->input->get_post("pageno");
+$orderby=$this->input->get_post("orderby");
+$orderorder=$this->input->get_post("orderorder");
+$maxrow=$this->input->get_post("maxrow");
+if($maxrow=="")
+{
+$maxrow=20;
+}
+if($orderby=="")
+{
+$orderby="id";
+$orderorder="ASC";
+}
+$data["message"]=$this->chintantable->query($pageno,$maxrow,$orderby,$orderorder,$search,$elements,"FROM `euro_arrival`");
+$this->load->view("json",$data);
+}
 
+public function createarrival()
+{
+$access=array("1","2");
+$this->checkaccess($access);
+$data["page"]="createarrival";
+$data["title"]="Create arrival";
+$this->load->view("template",$data);
+}
+public function createarrivalsubmit()
+{
+$access=array("1","2");
+$this->checkaccess($access);
+$id=$this->input->get_post("id");
+$image1=$this->menu_model->createImage1();
+$image2=$this->menu_model->createImage2();
+$order=$this->input->get_post("order");
+echo $image1."aaa";
+if($this->arrival_model->create($image1,$image2,$order)==0)
+$data["alerterror"]="New arrival could not be created.";
+else
+ $data["alertsuccess"]="arrival created Successfully.";
+// $data["redirect"]="site/viewarrival";
+// $this->load->view("redirect",$data);
+
+}
+public function editarrival()
+{
+$access=array("1","2");
+$this->checkaccess($access);
+$data["page"]="editarrival";
+$data["title"]="Edit arrival";
+$data["before"]=$this->arrival_model->beforeedit($this->input->get("id"));
+$this->load->view("template",$data);
+}
+public function editarrivalsubmit()
+{
+$access=array("1","2");
+$this->checkaccess($access);
+$this->form_validation->set_rules("id","ID","trim");
+$this->form_validation->set_rules("image1","Image1","trim");
+$this->form_validation->set_rules("image2","Image2","trim");
+if($this->form_validation->run()==FALSE)
+{
+$data["alerterror"]=validation_errors();
+$data["page"]="editarrival";
+$data["title"]="Edit arrival";
+$data["before"]=$this->arrival_model->beforeedit($this->input->get("id"));
+$this->load->view("template",$data);
+}
+else
+{
+$id=$this->input->get_post("id");
+$order=$this->input->get_post("order");
+$config['upload_path'] = './uploads/';
+ $config['allowed_types'] = 'gif|jpg|png';
+ $this->load->library('upload', $config);
+ $filename="image1";
+ $image1="";
+ if (  $this->upload->do_upload($filename))
+ {
+	 $uploaddata = $this->upload->data();
+	 $image=$uploaddata['file_name'];
+ }
+if($image1=="")
+			 {
+			 $image1=$this->arrival_model->getimagebyid($id);
+				$image1=$image1->image1;
+			 }
+ $filename="image2";
+ $image2="";
+ if (  $this->upload->do_upload($filename))
+ {
+	 $uploaddata = $this->upload->data();
+	 $image2=$uploaddata['file_name'];
+ }
+if($image2=="")
+			 {
+			 $image2=$this->arrival_model->getimage2byid($id);
+					// print_r($image);
+					 $image2=$image2->image;
+			 }
+
+if($this->arrival_model->edit($id,$image,$image2,$order)==0)
+$data["alerterror"]="New arrival could not be Updated.";
+else
+$data["alertsuccess"]="arrival Updated Successfully.";
+$data["redirect"]="site/viewarrival";
+$this->load->view("redirect",$data);
+}
+}
+public function deletearrival()
+{
+$access=array("1");
+$this->checkaccess($access);
+$this->arrival_model->delete($this->input->get("id"));
+$data["redirect"]="site/viewarrival";
+$this->load->view("redirect",$data);
+}
 
 }

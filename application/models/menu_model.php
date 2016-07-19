@@ -243,20 +243,7 @@ class Menu_model extends CI_Model
 			}
         return $image2;
     }
-    function createImage1()
-    {
-           $config['upload_path'] = './uploads/';
-			$config['allowed_types'] = 'gif|jpg|png';
-			$this->load->library('upload', $config);
-			$filename="image1";
-			$image1="";
-			if (  $this->upload->do_upload($filename))
-			{
-				$uploaddata = $this->upload->data();
-				$image1=$uploaddata['file_name'];
-			}
-        return $image1;
-    }
+
     function createPDF()
     {
 			$config['upload_path'] = './uploads/';
