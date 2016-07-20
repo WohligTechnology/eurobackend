@@ -8,7 +8,7 @@
 <tr>
 <th data-field="id">ID</th>
 <th data-field="order">Order</th>
-<th data-field="image1">Image1</th>
+<th data-field="image1">Image</th>
 <!-- <th data-field="image2">Image2</th> -->
 </tr>
 </thead>
