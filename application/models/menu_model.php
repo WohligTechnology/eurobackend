@@ -39,7 +39,7 @@ class Menu_model extends CI_Model
 //     function createImage()
 //    {
 //           $config['upload_path'] = './uploads/';
-//			$config['allowed_types'] = 'gif|jpg|png';
+//			$config['allowed_types'] = '*';
 //			$this->load->library('upload', $config);
 //			$filename="image";
 //			$image="";
@@ -229,10 +229,24 @@ class Menu_model extends CI_Model
 //			}
 //        return $image;
 //    }
+    function createImage1()
+    {
+           $config['upload_path'] = './uploads/';
+			$config['allowed_types'] = '*';
+			$this->load->library('upload', $config);
+			$filename="image1";
+			$image1="";
+			if (  $this->upload->do_upload($filename))
+			{
+				$uploaddata = $this->upload->data();
+				$image1=$uploaddata['file_name'];
+			}
+        return $image1;
+    }
     function createImage2()
     {
            $config['upload_path'] = './uploads/';
-			$config['allowed_types'] = 'gif|jpg|png';
+			$config['allowed_types'] = '*';
 			$this->load->library('upload', $config);
 			$filename="image2";
 			$image2="";
@@ -262,7 +276,7 @@ class Menu_model extends CI_Model
     function createImage3()
     {
            $config['upload_path'] = './uploads/';
-			$config['allowed_types'] = 'gif|jpg|png';
+			$config['allowed_types'] = '*';
 			$this->load->library('upload', $config);
 			$filename="image3";
 			$image3="";
@@ -276,7 +290,7 @@ class Menu_model extends CI_Model
     function createBanner()
     {
            $config['upload_path'] = './uploads/';
-			$config['allowed_types'] = 'gif|jpg|png';
+			$config['allowed_types'] = '*';
 			$this->load->library('upload', $config);
 			$filename="banner";
 			$banner="";
@@ -290,7 +304,7 @@ class Menu_model extends CI_Model
     function createBanner2()
     {
            $config['upload_path'] = './uploads/';
-			$config['allowed_types'] = 'gif|jpg|png';
+			$config['allowed_types'] = '*';
 			$this->load->library('upload', $config);
 			$filename="banner2";
 			$banner="";

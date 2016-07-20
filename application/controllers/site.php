@@ -2395,16 +2395,32 @@ public function createarrivalsubmit()
 $access=array("1","2");
 $this->checkaccess($access);
 $id=$this->input->get_post("id");
-$image1=$this->menu_model->createImage1();
-$image2=$this->menu_model->createImage2();
 $order=$this->input->get_post("order");
-echo $image1."aaa";
-if($this->arrival_model->create($image1,$image2,$order)==0)
+// $image1=$this->menu_model->createImage1();
+// $image2=$this->menu_model->createImage2();
+$config['upload_path'] = './uploads/';
+				$config['allowed_types'] = 'gif|jpg|png';
+				$this->load->library('upload', $config);
+				$filename = 'image';
+				$image = '';
+				if ($this->upload->do_upload($filename)) {
+						$uploaddata = $this->upload->data();
+						$image1 = $uploaddata['file_name'];
+				}
+				// $filename = 'image2';
+				// $image2 = '';
+				// if ($this->upload->do_upload($filename)) {
+				// 		$uploaddata = $this->upload->data();
+				// 		$image2 = $uploaddata['file_name'];
+				// }
+$order=$this->input->get_post("order");
+
+if($this->arrival_model->create($image1,$order)==0)
 $data["alerterror"]="New arrival could not be created.";
 else
  $data["alertsuccess"]="arrival created Successfully.";
-// $data["redirect"]="site/viewarrival";
-// $this->load->view("redirect",$data);
+$data["redirect"]="site/viewarrival";
+$this->load->view("redirect",$data);
 
 }
 public function editarrival()
@@ -2436,35 +2452,36 @@ else
 $id=$this->input->get_post("id");
 $order=$this->input->get_post("order");
 $config['upload_path'] = './uploads/';
- $config['allowed_types'] = 'gif|jpg|png';
+ $config['allowed_types'] = '*';
  $this->load->library('upload', $config);
  $filename="image1";
  $image1="";
- if (  $this->upload->do_upload($filename))
+ if ($this->upload->do_upload($filename))
  {
 	 $uploaddata = $this->upload->data();
-	 $image=$uploaddata['file_name'];
+	 $image1=$uploaddata['file_name'];
  }
 if($image1=="")
 			 {
 			 $image1=$this->arrival_model->getimagebyid($id);
 				$image1=$image1->image1;
 			 }
- $filename="image2";
- $image2="";
- if (  $this->upload->do_upload($filename))
- {
-	 $uploaddata = $this->upload->data();
-	 $image2=$uploaddata['file_name'];
- }
-if($image2=="")
-			 {
-			 $image2=$this->arrival_model->getimage2byid($id);
-					// print_r($image);
-					 $image2=$image2->image;
-			 }
+//  $filename="image2";
+//  $image2="";
+//  if (  $this->upload->do_upload($filename))
+//  {
+// 	 $uploaddata = $this->upload->data();
+// 	 $image2=$uploaddata['file_name'];
+//  }
+// if($image2=="")
+// 			 {
+// 			 $image2=$this->arrival_model->getimage2byid($id);
+// 					// print_r($image);
+// 					 $image2=$image2->image;
+// 			 }
 
-if($this->arrival_model->edit($id,$image,$image2,$order)==0)
+
+if($this->arrival_model->edit($id,$image1,$order)==0)
 $data["alerterror"]="New arrival could not be Updated.";
 else
 $data["alertsuccess"]="arrival Updated Successfully.";

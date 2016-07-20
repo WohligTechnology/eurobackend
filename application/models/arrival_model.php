@@ -3,7 +3,7 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class arrival_model extends CI_Model
 {
-public function create($image1,$image2,$order)
+public function create($image1,$order)
 {
 $data=array("image1" => $image1,"order" => $order);
 $query=$this->db->insert( "euro_arrival", $data );
@@ -24,11 +24,11 @@ $this->db->where("id",$id);
 $query=$this->db->get("euro_arrival")->row();
 return $query;
 }
-public function edit($id,$image1,$image2,$order)
+public function edit($id,$image1,$order)
 {
-$data=array("order" => $order);
-if($image1 != "")
-  $data['image1']=$image1;
+$data=array("image1" => $image1,"order" => $order);
+// if($image1 == "")
+//   $data['image1']=$image1;
 // if($image2 != "")
 //   $data['image2']=$image2;
 $this->db->where( "id", $id );
@@ -45,11 +45,11 @@ public function getimagebyid($id)
 $query=$this->db->query("SELECT `image1` FROM `euro_arrival` WHERE `id`='$id'")->row();
 return $query;
 }
-    public function getimage2byid($id)
-{
-$query=$this->db->query("SELECT `image2` FROM `euro_arrival` WHERE `id`='$id'")->row();
-return $query;
-}
+//     public function getimage2byid($id)
+// {
+// $query=$this->db->query("SELECT `image2` FROM `euro_arrival` WHERE `id`='$id'")->row();
+// return $query;
+// }
 public function getdropdown()
 {
 $query=$this->db->query("SELECT * FROM `euro_arrival` ORDER BY `id`

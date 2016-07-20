@@ -19,6 +19,11 @@ public function getNotification()
   $query=$this->db->query("SELECT `id`, `text`, `timestamp`, `order` FROM `notification` WHERE 1 ORDER BY `order`")->result();
   return $query;
 }
+public function getAllArrival()
+{
+  $query=$this->db->query("SELECT `id`, `image1`, `order` FROM `euro_arrival` WHERE 1 ORDER BY `order`")->result();
+  return $query;
+}
 public function getProductDetail($id)
 {
   $query=$this->db->query("SELECT `euro_category`.`name` AS 'categoryname',`euro_subcategory`.`name` AS 'seriesname',`euro_product`.`name`,`euro_product`.`image`,`euro_product`.`size` FROM `euro_product` LEFT OUTER JOIN

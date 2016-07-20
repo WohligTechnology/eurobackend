@@ -4,12 +4,12 @@
 <h4 class="pad-left-15 capitalize">Edit arrival</h4>
 </div>
 </div>
-<!-- <div class="row">
+<div class="row">
 <div class="input-field col s6">
-<label for="Order">Link</label>
-<input type="text" id="link" name="link" value='<?php echo set_value('link',$before->link);?>'>
+<label for="Order">Order</label>
+<input type="text" id="order" name="order" value='<?php echo set_value('order',$before->order);?>'>
 </div>
-</div> -->
+</div>
 <div class="row">
 
 <input type="hidden" id="normal-field" class="form-control" name="id" value="<?php echo set_value('id',$before->id);?>" style="display:none;">

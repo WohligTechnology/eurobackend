@@ -610,6 +610,11 @@ public function getAllCategories()
     $data["message"]=$this->restapi_model->getAllCategory();
   $this->load->view("json",$data);
 }
+public function getAllArrival()
+{
+  $data["message"]=$this->restapi_model->getAllArrival();
+  $this->load->view("json",$data);
+}
 
 public function getCategoryById()
 {
