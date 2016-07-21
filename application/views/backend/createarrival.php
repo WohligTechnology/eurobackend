@@ -10,6 +10,12 @@
   <input type="text" id="order" name="order" value='<?php echo set_value('order');?>'>
   </div>
   </div>
+  <div class="row">
+  <div class="input-field col s6">
+  <label for="Order">Link</label>
+  <input type="text" id="link" name="link" value='<?php echo set_value('link');?>'>
+  </div>
+  </div>
 <div class="row big">
 <div class="file-field input-field col s12 m6">
 <div class="btn blue darken-4">

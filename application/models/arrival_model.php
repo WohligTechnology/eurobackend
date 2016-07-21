@@ -3,9 +3,9 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class arrival_model extends CI_Model
 {
-public function create($image1,$order)
+public function create($image1,$order,$link)
 {
-$data=array("image1" => $image1,"order" => $order);
+$data=array("image1" => $image1,"order" => $order,"link" => $link);
 $query=$this->db->insert( "euro_arrival", $data );
 $id=$this->db->insert_id();
 if(!$query)
@@ -24,9 +24,9 @@ $this->db->where("id",$id);
 $query=$this->db->get("euro_arrival")->row();
 return $query;
 }
-public function edit($id,$image1,$order)
+public function edit($id,$image1,$order,$link)
 {
-$data=array("image1" => $image1,"order" => $order);
+$data=array("image1" => $image1,"order" => $order,"link" => $link);
 // if($image1 == "")
 //   $data['image1']=$image1;
 // if($image2 != "")

@@ -11,6 +11,12 @@
 </div>
 </div>
 <div class="row">
+<div class="input-field col s6">
+<label for="Order">Link</label>
+<input type="text" id="link" name="link" value='<?php echo set_value('link',$before->link);?>'>
+</div>
+</div>
+<div class="row">
 
 <input type="hidden" id="normal-field" class="form-control" name="id" value="<?php echo set_value('id',$before->id);?>" style="display:none;">
 <div class="row big">

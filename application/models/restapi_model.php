@@ -21,7 +21,7 @@ public function getNotification()
 }
 public function getAllArrival()
 {
-  $query=$this->db->query("SELECT `id`, `image1`, `order` FROM `euro_arrival` WHERE 1 ORDER BY `order`")->result();
+  $query=$this->db->query("SELECT `id`, `image1`,`link`,`order` FROM `euro_arrival` WHERE 1 ORDER BY `order`")->result();
   return $query;
 }
 public function getProductDetail($id)

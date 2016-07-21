@@ -2396,6 +2396,7 @@ $access=array("1","2");
 $this->checkaccess($access);
 $id=$this->input->get_post("id");
 $order=$this->input->get_post("order");
+$link=$this->input->get_post("link");
 // $image1=$this->menu_model->createImage1();
 // $image2=$this->menu_model->createImage2();
 $config['upload_path'] = './uploads/';
@@ -2415,7 +2416,7 @@ $config['upload_path'] = './uploads/';
 				// }
 $order=$this->input->get_post("order");
 
-if($this->arrival_model->create($image1,$order)==0)
+if($this->arrival_model->create($image1,$order,$link)==0)
 $data["alerterror"]="New arrival could not be created.";
 else
  $data["alertsuccess"]="arrival created Successfully.";
@@ -2451,6 +2452,7 @@ else
 {
 $id=$this->input->get_post("id");
 $order=$this->input->get_post("order");
+$link=$this->input->get_post("link");
 $config['upload_path'] = './uploads/';
  $config['allowed_types'] = '*';
  $this->load->library('upload', $config);
@@ -2481,7 +2483,7 @@ if($image1=="")
 // 			 }
 
 
-if($this->arrival_model->edit($id,$image1,$order)==0)
+if($this->arrival_model->edit($id,$image1,$order,$link)==0)
 $data["alerterror"]="New arrival could not be Updated.";
 else
 $data["alertsuccess"]="arrival Updated Successfully.";
