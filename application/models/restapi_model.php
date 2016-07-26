@@ -98,7 +98,7 @@ return $query;
 }
 public function getEachProductGallery($id)
 {
-$query= $this->db->query("SELECT  `euro_gallery`.`id`, `euro_gallery`.`image`,`euro_category`.`name` FROM `euro_gallery` LEFT OUTER JOIN `euro_category` ON `euro_category`.`id`=`euro_gallery`.`category` WHERE `euro_gallery`.`category`='$id' ORDER BY `euro_gallery`.`order`")->result();
+$query= $this->db->query("SELECT  `euro_gallery`.`id`,  `euro_gallery`.`image` AS 'image',`euro_gallery`.`image` AS 'src',`euro_category`.`name` FROM `euro_gallery` LEFT OUTER JOIN `euro_category` ON `euro_category`.`id`=`euro_gallery`.`category` WHERE `euro_gallery`.`category`='$id' ORDER BY `euro_gallery`.`order`")->result();
 return $query;
 }
 public function getDownload($id)
