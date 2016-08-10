@@ -48,6 +48,8 @@
 <input class="file-path validate" type="text" placeholder="Upload one or more files" value='<?php //echo set_value('image');?>'>
 </div>
 </div>
+<span style=" display: block;
+padding-top: 30px;">1921px X 401px</span>
 </div>
 <div class="row">
 <div class="file-field input-field col s12 m6">
@@ -59,6 +61,8 @@
 <input class="file-path validate" type="text" placeholder="Upload one or more files" value='<?php echo set_value('image2');?>'>
 </div>
 </div>
+<span style=" display: block;
+padding-top: 30px;">1921px X 401px</span>
 </div>
 <div class="row">
 <div class="col s12 m6">

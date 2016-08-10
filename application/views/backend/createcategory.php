@@ -32,7 +32,7 @@
 </div>
 </div>
  <span style=" display: block;
-    padding-top: 30px;">1600px X 500px</span>
+    padding-top: 30px;">1600px X 334px</span>
 </div>
 <!-- <div class="row big">
 <div class="file-field input-field col s12 m6">
@@ -57,6 +57,8 @@
 <input class="file-path validate" type="text" placeholder="Upload one or more files" value='<?php echo set_value('image');?>'>
 </div>
 </div>
+<span style=" display: block;
+   padding-top: 30px;">1000px X 534px</span>
 </div>
 <div class="row">
 <div class="file-field input-field col s12 m6">
@@ -68,6 +70,8 @@
 <input class="file-path validate" type="text" placeholder="Upload one or more files" value='<?php echo set_value('image2');?>'>
 </div>
 </div>
+<span style=" display: block;
+   padding-top: 30px;">2104px X 1054px</span>
 </div>
 <!-- <div class="row">
 <div class="file-field input-field col s12 m6">

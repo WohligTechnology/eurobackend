@@ -21,9 +21,9 @@
 </div>
 </div>
  <span style=" display: block;
-    padding-top: 30px;">1600px X 500px</span>
+    padding-top: 30px;">1000px X 373px</span>
 </div>
-<div class="row small">
+<div class="row small" style="display:none">
 <div class="file-field input-field col s12 m6">
 <div class="btn blue darken-4">
 <span>Image2</span>

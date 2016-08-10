@@ -20,8 +20,8 @@
 <input class="file-path validate" type="text" placeholder="Upload big image" value='<?php echo set_value('image1');?>'>
 </div>
 </div>
- <span style=" display: block;
-    padding-top: 30px;">300px X 300px</span>
+<span style=" display: block;
+   padding-top: 30px;">1000px X 534px</span>
 </div>
 <div class="row small">
 <div class="file-field input-field col s12 m6">

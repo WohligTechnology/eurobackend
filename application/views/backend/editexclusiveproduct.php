@@ -31,8 +31,10 @@
 				</div>
 <!--				<div class="md4"><a class="waves-effect waves-light btn red clearimg input-field ">Clear Image</a></div>-->
 			</div>
+			<span style=" display: block;
+			padding-top: 30px;">1000px X 373px</span>
 		</div>
-    <div class="row small">
+    <div class="row small" style="display:none">
 			<div class="file-field input-field col m6 s12">
 				<span class="img-center big image1">
                    			<?php if ($before->image2 == '') {

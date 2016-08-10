@@ -31,6 +31,8 @@
 				</div>
 <!--				<div class="md4"><a class="waves-effect waves-light btn red clearimg input-field ">Clear Image</a></div>-->
 			</div>
+			<span style=" display: block;
+				 padding-top: 30px;">1600px X 500px</span>
 		</div>
 
 		<div class="row">
@@ -57,6 +59,8 @@
 				</div>
 <!--				<div class="md4"><a class="waves-effect waves-light btn red clearimg input-field ">Clear Image</a></div>-->
 			</div>
+			<span style=" display: block;
+				 padding-top: 30px;">700px X 500px</span>
 		</div>
 		<div class="row">
 		<div class="input-field col s6">
@@ -82,6 +86,8 @@
 				</div>
 <!--				<div class="md4"><a class="waves-effect waves-light btn red clearimg input-field ">Clear Image</a></div>-->
 			</div>
+			<span style=" display: block;
+				 padding-top: 30px;">700px X 500px</span>
 		</div>
 <div class="row">
 <div class="col s6">

@@ -37,6 +37,8 @@
 				</div>
 <!--				<div class="md4"><a class="waves-effect waves-light btn red clearimg input-field ">Clear Image</a></div>-->
 			</div>
+			<span style=" display: block;
+			padding-top: 30px;">1494px X 560px</span>
 		</div>
     <!-- <div class="row small">
 			<div class="file-field input-field col m6 s12">
