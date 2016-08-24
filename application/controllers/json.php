@@ -634,6 +634,10 @@ public function SearchByCategory()
   $where = "WHERE 1";
 $this->chintantable->createelement("`euro_product`.`id`", '1', "ID", "id");
 $this->chintantable->createelement("`euro_product`.`name`", '1', "name", "name");
+$this->chintantable->createelement("`euro_product`.`category`", '1', "categoryid", "categoryid");
+$this->chintantable->createelement("`euro_category`.`name`", '1', "categoryname", "categoryname");
+$this->chintantable->createelement("`euro_product`.`subcategory`", '1', "subcategoryid", "subcategoryid");
+$this->chintantable->createelement("`euro_subcategory`.`name`", '1', "subcategoryname", "subcategoryname");
 $this->chintantable->createelement("`euro_product`.`image`", '0', "image", "image");
 $this->chintantable->createelement("`euro_product`.`size`", '0', "size", "size");
 $this->chintantable->createelement("`euro_product`.`order`", '0', "order", "order");
@@ -708,8 +712,6 @@ public function contactUs()
           $state = $data['state'];
         $data['message'] = $this->restapi_model->contactUs($name,$telephone,$email,$comment,$city,$state);
     }
-
-
 
 $this->load->view('json', $data);
 }
