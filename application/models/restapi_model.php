@@ -70,7 +70,7 @@ $this->email_model->emailer($message,'New Subscription','vinodwohlig@gmail.com',
 
 public function getAllCategory()
 {
-$query= $this->db->query("SELECT `id`,`name`,`image`,`banner`,`image2` AS 'featureimage',`pdfdownload` AS 'pdf' FROM `euro_category` WHERE `status`=1 ORDER BY `order`")->result();
+$query= $this->db->query("SELECT `id`,`name`,`image`,`banner`,`image2` AS 'featureimage',`pdfdownload` AS 'pdf',`defaultimage` FROM `euro_category` WHERE `status`=1 ORDER BY `order`")->result();
 return $query;
 }
 

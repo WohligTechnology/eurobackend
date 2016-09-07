@@ -121,7 +121,27 @@
 
     		</div> -->
 
-
+        <div class="row">
+        			<div class="file-field input-field col m6 s12">
+        				<span class="img-center big image1">
+                           			<?php if ($before->defaultimage == '') {
+        } else {
+            ?><img src="<?php echo base_url('uploads').'/'.$before->defaultimage;
+            ?>">
+        						<?php
+        } ?></span>
+        				<div class="btn blue darken-4">
+        					<span>Default Image</span>
+        					<input name="defaultimage" type="file" multiple>
+        				</div>
+        				<div class="file-path-wrapper">
+        					<input class="file-path validate defaultimage1" type="text" placeholder="Upload one or more files" value="<?php echo set_value('defaultimage', $before->defaultimage);?>">
+        				</div>
+        <!--				<div class="md4"><a class="waves-effect waves-light btn red clearimg input-field ">Clear Image</a></div>-->
+        			</div>
+              <span style=" display: block;
+                 padding-top: 30px;">1000px X 1381px</span>
+        		</div>
 
 
 <div class="row">

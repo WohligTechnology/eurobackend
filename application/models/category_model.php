@@ -3,9 +3,9 @@ if ( !defined( "BASEPATH" ) )
 exit( "No direct script access allowed" );
 class category_model extends CI_Model
 {
-public function create($order,$status,$name,$banner,$banner2,$image,$image2,$pdfdownload)
+public function create($order,$status,$name,$banner,$banner2,$image,$image2,$pdfdownload,$defaultimage)
 {
-$data=array("order" => $order,"status" => $status,"name" => $name,"banner" => $banner,"banner2" => $banner2,"image" => $image,"image2" => $image2,"pdfdownload" => $pdfdownload);
+$data=array("order" => $order,"status" => $status,"name" => $name,"banner" => $banner,"banner2" => $banner2,"image" => $image,"image2" => $image2,"pdfdownload" => $pdfdownload,"defaultimage" => $defaultimage);
  print_r($data);
 $query=$this->db->insert( "euro_category", $data );
 $id=$this->db->insert_id();
@@ -25,9 +25,9 @@ $this->db->where("id",$id);
 $query=$this->db->get("euro_category")->row();
 return $query;
 }
-public function edit($id,$order,$status,$name,$banner,$banner2,$image,$image2,$pdfdownload)
+public function edit($id,$order,$status,$name,$banner,$banner2,$image,$image2,$pdfdownload,$defaultimage)
 {
-$data=array("order" => $order,"status" => $status,"name" => $name);
+$data=array("order" => $order,"status" => $status,"name" => $name,"defaultimage" => $defaultimage);
 if($image != "")
   $data['image']=$image;
 if($image2 != "")
@@ -61,6 +61,11 @@ return $query;
     public function getbannerbyid($id)
 {
 $query=$this->db->query("SELECT `banner` FROM `euro_category` WHERE `id`='$id'")->row();
+return $query;
+}
+    public function getdefaultimagebyid($id)
+{
+$query=$this->db->query("SELECT `defaultimage` FROM `euro_category` WHERE `id`='$id'")->row();
 return $query;
 }
     public function getbanner2byid($id)
