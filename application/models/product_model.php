@@ -41,6 +41,20 @@ public function delete($id)
 $query=$this->db->query("DELETE FROM `euro_product` WHERE `id`='$id'");
 return $query;
 }
+public function deleteproductImage($id,$imagename)
+{
+$data=array("image" => '');
+$this->db->where( "id", $id );
+$query=$this->db->update( "euro_product", $data );
+if($query){
+    return 1;
+}
+else 
+{
+    return 0;
+}
+
+}
 public function getimagebyid($id)
 {
 $query=$this->db->query("SELECT `image` FROM `euro_product` WHERE `id`='$id'")->row();

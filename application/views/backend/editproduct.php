@@ -11,7 +11,7 @@
 	<input type="text" id="order" name="order" value='<?php echo set_value('order',$before->order);?>'>
 	</div>
 	</div>
-<input type="hidden" id="normal-field" class="form-control" name="id" value="<?php echo set_value('id',$before->id);?>" style="display:none;">
+<input type="hidden" id="id" class="form-control" name="id" value="<?php echo set_value('id',$before->id);?>" style="display:none;">
 <div class=" row">
 <div class=" input-field col s12 m6">
 <?php echo form_dropdown("category",$category,set_value('category',$before->category));?>
@@ -44,9 +44,9 @@
 					<input name="image" type="file" multiple>
 				</div>
 				<div class="file-path-wrapper">
-					<input class="file-path validate image1" type="text" placeholder="Upload one or more files" value="<?php echo set_value('image', $before->image);?>">
+					<input class="file-path validate image1" type="text" id="image" placeholder="Upload one or more files" value="<?php echo set_value('image', $before->image);?>">
 				</div>
-<!--				<div class="md4"><a class="waves-effect waves-light btn red clearimg input-field ">Clear Image</a></div>-->
+				<div class="md4"><a class="waves-effect waves-light btn red clearimg input-field " onclick="clearimg()">Clear Image</a></div>
 			</div>
 
 <span style=" display: block;
@@ -66,3 +66,18 @@ padding-top: 30px;">1000px X 801px</span>
 </div>
 </form>
 </div>
+<script>
+function clearimg(){
+	var imagename = document.getElementById("image").value;
+	var id = document.getElementById("id").value;
+	// var base_url = "http://europratik.com/admin/uploads/"+imagename;
+	 var new_base_url = "<?php echo site_url(); ?>";
+	   $.getJSON(new_base_url + '/site/deleteproductImage', {
+                imagename:imagename,
+                id:id
+            }, function(data) {
+				  $('.big').hide();
+// window.location.reload();
+			});
+}
+</script>

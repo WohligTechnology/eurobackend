@@ -181,6 +181,37 @@ class Site extends CI_Controller
 		$data['title']='View Users';
 		$this->load->view('template',$data);
 	}
+    function deleteproductImage()
+	{
+		$id=$this->input->get_post('id');
+		$imagename=$this->input->get_post('imagename');
+		$deleted=$this->product_model->deleteproductImage($id,$imagename);
+		$this->load->view( 'json', $deleted );
+	}
+    function deleteImage()
+	{
+		$id=$this->input->get_post('id');
+		$deleted=$this->category_model->deleteImage($id);
+		$this->load->view( 'json', $deleted );
+	}
+    function deleteImage2()
+	{
+		$id=$this->input->get_post('id');
+		$deleted=$this->category_model->deleteImage2($id);
+		$this->load->view( 'json', $deleted );
+	}
+    function deleteBanner()
+	{
+		$id=$this->input->get_post('id');
+		$deleted=$this->category_model->deleteBanner($id);
+		$this->load->view( 'json', $deleted );
+	}
+    function deleteDefaultImage()
+	{
+		$id=$this->input->get_post('id');
+		$deleted=$this->category_model->deleteDefaultImage($id);
+		$this->load->view( 'json', $deleted );
+	}
     function viewusersjson()
 	{
 		$access = array("1");

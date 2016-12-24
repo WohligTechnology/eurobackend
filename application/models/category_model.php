@@ -102,4 +102,69 @@ $return[$row->id]=$row->name;
 }
 return $return;
 }
+
+
+public function deleteImage($id)
+{
+$data=array("image" => '');
+$this->db->where( "id", $id );
+$query=$this->db->update( "euro_category", $data );
+if($query){
+    return 1;
+}
+else 
+{
+    return 0;
+}
+
+}
+
+
+
+public function deleteImage2($id)
+{
+$data=array("image2" => '');
+$this->db->where( "id", $id );
+$query=$this->db->update( "euro_category", $data );
+if($query){
+    return 1;
+}
+else 
+{
+    return 0;
+}
+
+}
+
+
+public function deleteBanner($id)
+{
+$data=array("banner" => '');
+$this->db->where( "id", $id );
+$query=$this->db->update( "euro_category", $data );
+if($query){
+    return 1;
+}
+else 
+{
+    return 0;
+}
+
+}
+
+
+public function deleteDefaultImage($id)
+{
+$data=array("defaultimage" => '');
+$this->db->where( "id", $id );
+$query=$this->db->update( "euro_category", $data );
+if($query){
+    return 1;
+}
+else 
+{
+    return 0;
+}
+
+}
 }
