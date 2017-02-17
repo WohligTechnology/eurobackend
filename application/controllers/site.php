@@ -2621,11 +2621,12 @@ public function uploadSiteBannerImage()
 	$image="";
 	if ( $this->upload->do_upload($filename) )
 	{
-		echo "Demo";
 		$uploaddata = $this->upload->data();
 		$image=$uploaddata['file_name'];
 		$this->restapi_model->changeSiteBanner($image);
 	}
+	$data["redirect"]="site/index";
+	$this->load->view("redirect",$data);
 }
 
 
