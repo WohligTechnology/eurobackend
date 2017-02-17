@@ -715,4 +715,10 @@ public function contactUs()
 
 $this->load->view('json', $data);
 }
+
+public function getSiteBanner() {
+  $data["message"] = $this->restapi_model->getSiteBanner();
+  $this->load->view('json', $data);
+}
+
 }

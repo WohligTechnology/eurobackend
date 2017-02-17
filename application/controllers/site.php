@@ -2609,4 +2609,28 @@ $data["redirect"]="site/viewarrival";
 $this->load->view("redirect",$data);
 }
 
+
+public function uploadSiteBannerImage()
+{
+
+
+	$config['upload_path'] = './uploads/';
+	$config['allowed_types'] = 'gif|jpg|png|jpeg';
+	$this->load->library('upload', $config);
+	$filename="image";
+	$image="";
+	if ( $this->upload->do_upload($filename) )
+	{
+		echo "Demo";
+		$uploaddata = $this->upload->data();
+		$image=$uploaddata['file_name'];
+		$this->restapi_model->changeSiteBanner($image);
+	}
+}
+
+
+
+
+
+
 }

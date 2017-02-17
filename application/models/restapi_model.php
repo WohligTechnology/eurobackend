@@ -170,7 +170,6 @@ Comment : $comment
 </div></body></html>";
 if(!empty($email))
 {
-
 // $viewcontent = $this->load->view('emailers/forgotpassword', $data, true);
 $this->email_model->emailer($message,'Contact Form Submission',$email,$username);
 }
@@ -189,4 +188,16 @@ $response = curl_exec($session);
   }
 
 }
+
+public function changeSiteBanner($image)
+{
+  $query= $this->db->query(" UPDATE `config` SET `content`='$image' WHERE `title`='siteBanner' ");
+}
+
+public function getSiteBanner()
+{
+  $query = $this->db->query(" SELECT * FROM  `config` WHERE `title`='siteBanner' ")->row();
+  return $query;
+}
+
 }
