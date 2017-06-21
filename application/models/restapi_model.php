@@ -144,7 +144,7 @@ return $query;
 }
 public function getCategoryById($id)
 {
-$query= $this->db->query("SELECT `id`,`name`,`banner`,`pdfdownload`,`defaultimage` AS 'pdf' FROM `euro_category` WHERE `id`='$id'")->row();
+$query= $this->db->query("SELECT `id`,`name`,`banner`,`pdfdownload` AS 'pdf',`defaultimage`  FROM `euro_category` WHERE `id`='$id'")->row();
 return $query;
 }
 // public function SearchByCategory($name)
